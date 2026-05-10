@@ -1,0 +1,103 @@
+# --- Internal / not for the public repo ---
+# Project brief (strategic context, monetization plans, internal sequencing).
+# Read by AI agents working on this repo via the local file path; not for public consumption.
+CLAUDE.md
+
+positioning_one_pager.md
+# AI assistant config / state directories (defensive — ignored even if not present).
+.claude/
+.cursor/
+.aider*
+
+# --- macOS / OS noise ---
+.DS_Store
+Thumbs.db
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+
+# --- Node / JS (if used for any tooling) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Terraform ---
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+# .terraform.lock.hcl IS committed — do not ignore
+
+# --- dbt ---
+target/
+dbt_packages/
+logs/
+profiles.yml
+.user.yml
+
+# --- Secrets / credentials ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+.aws/
+.gcp/
+.azure/
+service-account*.json
+*-credentials.json
+
+# --- Data / output ---
+data/raw/
+data/local/
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.sqlite3
+*.db
+
+# --- Notebooks ---
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# --- Cloud / build artifacts ---
+.serverless/
+.cdk.staging/
+cdk.out/
