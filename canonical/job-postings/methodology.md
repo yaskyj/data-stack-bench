@@ -1,8 +1,12 @@
-# Job-posting analysis — methodology spec v0.1
+# Job-posting analysis — methodology spec v0.1.2
 
-**Version:** 0.1 (draft)
-**Date:** 2026-05-10 (v0.1.1 — cloud-platform breakdown elevated to headline output, lineup-wide framing added)
-**Status:** Spec only. The analysis itself runs after this is reviewed and locked. Sequencing update: this analysis now runs *before* ADR-001 (orchestrator), not in parallel — the lineup informs orchestrator constraints.
+**Version:** 0.1.2 (draft)
+**Date:** 2026-05-11
+**Status:** Spec for execution. The analysis itself runs against this spec via a Python pipeline (see "Capture protocol" below). Sequencing update: this analysis runs *before* ADR-001 (orchestrator), not in parallel — the lineup informs orchestrator constraints.
+
+**v0.1.2 changes from v0.1.1:**
+- **LinkedIn → BuiltIn as the third source.** LinkedIn's API is gated behind a Talent Solutions partnership program and self-serve access doesn't exist. Aggregator services (Coresignal, Bright Data, JSearch on RapidAPI) sit in ToS gray and return normalized field sets that strip the "tools you'll use" paragraph this analysis depends on. BuiltIn (builtin.com) is a mid-market tech-focused job board with employee-size filtering, plain HTML, no auth wall, and substantially better mid-market coverage of the anchor buyer profile than LinkedIn would have provided. `linkedin` is reserved in the source enum for future use but not used in v0.1.
+- **Manual capture → Python pipeline + LLM-assisted extraction.** v0.1's "don't build a parser; just read and tag" reasoning was written assuming a solo builder with no agent tools. With Cowork + Claude Code + Anthropic API available, a programmatic pipeline is faster, runs unattended quarterly, and is itself a portfolio artifact on-brand for the project. The pipeline preserves verbatim posting text in `stack_mentions_raw` (so the source-of-truth is not lossy), populates normalized fields via LLM extraction with confidence scores, and flags ambiguous cases for human spot-check. A ≥15% random sample is human-reviewed before any analysis output is generated; if sample agreement is below 95% the pipeline is corrected and the run repeats. The blog post framing for this run is "I built a small data pipeline to map the modern data stack hiring market" — better content than "I read 150 postings."
 
 ---
 
@@ -35,18 +39,20 @@ Four candidate sources, three included:
 
 **Wellfound (formerly AngelList Talent) — primary.** Startup-focused, often more authentic descriptions written by founders or hiring engineers, strong signal on Series A/B exactly inside the anchor buyer profile. Weight: high.
 
-**Hacker News "Who's Hiring" monthly threads — primary.** Engineer-written job postings, very high content quality, low HR/recruiter padding, but skewed to YC/SV companies. Strong signal precisely because the descriptions name specific tools. Weight: high.
+**Hacker News "Who's Hiring" monthly threads — primary.** Engineer-written job postings, very high content quality, low HR/recruiter padding, but skewed to YC/SV companies. Strong signal precisely because the descriptions name specific tools. Weight: high. Fetched via the public HN Algolia API.
 
-**LinkedIn — secondary, for breadth.** Highest volume but lowest content quality (HR-written, padded with boilerplate). Best used for company-size filtering and for reaching mid-market postings that don't appear on Wellfound or HN. Weight: medium. Use with stronger normalization filtering.
+**BuiltIn (builtin.com) — primary, for mid-market coverage.** Tech-focused job board with strong coverage of 100–250-employee mid-market companies in NYC/SF/Chicago/LA/Austin. Plain HTML pages, employee-size and role-type filtering, no auth wall. Replaces LinkedIn at v0.1.2 (see v0.1.2 changes above for the LinkedIn drop rationale). Weight: high.
 
 **Indeed — excluded.** Volume is high but signal is poor. Heavy on agencies and reposts, and the descriptions skew toward role responsibilities rather than stack specifics. Excluded from v0.1 of this analysis. Revisit if the other three don't yield enough postings for the mid-market end of the buyer profile.
 
+**LinkedIn — reserved, not used in v0.1.** API access is gated; aggregator services strip the fields this analysis depends on. Reconsidered at v0.2 if Coresignal or a similar source becomes affordable and a richer field set is available.
+
 **Source mix target for the quarterly run:**
 - Wellfound: ~50 postings
-- HN Who's Hiring: ~50 postings (typically pulled from the most recent two threads)
-- LinkedIn: ~50 postings
+- HN Who's Hiring: ~50 postings (pulled from the most recent two threads)
+- BuiltIn: ~50 postings
 
-Source weighting in the final analysis: each posting counts as one observation regardless of source. The narrative interpretation calls out where one source disagrees with another (e.g., "Snowflake is mentioned in 70% of LinkedIn postings but 40% of HN postings — likely a corporate-vs-startup divergence, not a measurement artifact").
+Source weighting in the final analysis: each posting counts as one observation regardless of source. The narrative interpretation calls out where one source disagrees with another (e.g., "Snowflake is mentioned in 70% of BuiltIn postings but 40% of HN postings — likely a corporate-vs-startup divergence, not a measurement artifact").
 
 ## Inclusion filters
 
@@ -101,7 +107,7 @@ Every posting that passes filters yields one row. Captured fields:
 | Field | Type | Notes |
 |---|---|---|
 | `posting_id` | string | Hash of source URL + posting date |
-| `source` | enum | `wellfound`, `hn_whoishiring`, `linkedin` |
+| `source` | enum | `wellfound`, `hn_whoishiring`, `builtin` (`linkedin` reserved, not used in v0.1) |
 | `source_url` | string | Permalink where possible; HN comment anchor for HN |
 | `captured_date` | date | When the posting was extracted |
 | `posting_date` | date | When the posting was published, if discoverable |
@@ -149,11 +155,31 @@ A posting that lists "Snowflake, dbt, Airflow, Looker" yields four normalized co
 
 **Normalization rules.**
 
-- Plain-text matching is fuzzy and the posting paragraph is short. Manual extraction is faster and more accurate than automating it for N=150. Don't build a parser; just read and tag. Quarterly cadence makes this acceptable.
-- A component mentioned as "we're migrating away from X to Y" counts as **Y** (a vote for Y), not X. Capture in the `notes` field.
+- Extraction is LLM-assisted with verbatim source text preserved (v0.1.2 revision; see "Capture protocol" below). Earlier "don't build a parser, just read and tag" guidance was solo-builder reasoning and is superseded. The pipeline prompts an LLM extractor with the raw posting paragraph and the closed component taxonomy, returning a normalized array plus per-mapping confidence. Low-confidence rows route to the human spot-check queue.
+- A component mentioned as "we're migrating away from X to Y" counts as **Y** (a vote for Y), not X. Capture in the `notes` field. The extractor prompt explicitly handles this case.
 - A component mentioned as "experience with X is a plus" counts at half-weight (track separately in a `stack_components_aspirational` field if useful; for v0.1 just capture in notes).
 - A component category absent from the posting is **not** an absence vote — postings are short and miss things. Co-occurrence and frequency analysis only count positive mentions.
 - If a posting says "ELT pipeline" without naming the tool, that's a vote for "uses some ELT tool, instance unknown" — capture in notes; do not impute.
+
+## Capture protocol (v0.1.2)
+
+Capture is a Python pipeline in `canonical/job-postings/pipeline/`. Three fetchers plus a shared extractor and CSV writer.
+
+**Fetchers (per source):**
+
+- `fetch_hn.py` — pulls "Who is hiring" thread comments via the public HN Algolia API (`hn.algolia.com/api/v1/...`). Configurable thread list (default: most recent two monthly threads). Output: one JSONL per thread with `{posting_id, source_url, posting_date, raw_text}` per comment.
+- `fetch_builtin.py` — scrapes BuiltIn search-result pages plus per-posting detail pages via HTTP + BeautifulSoup. Search filters baked into the URL: company size 50–250, role types in the include list, geo US + remote. Plain HTML; no auth required. Output: same JSONL schema.
+- `fetch_wellfound.py` — Wellfound (formerly AngelList) public job listings via HTTP + BeautifulSoup where the listing is accessible without login; falls back to Claude in Chrome for sessions that require auth. Output: same JSONL schema.
+
+**Filter pass.** `filter_postings.py` reads the raw JSONLs and applies the v0.1.2 inclusion filters (company stage/size, role title/function, seniority, geography, industry, posting freshness). Each posting gets `included: bool` and `exclude_reason: str` recorded. Exclusions are kept in the file (not deleted) so the filter pass is auditable.
+
+**Extraction pass.** `extract_fields.py` calls a provider-agnostic LLM client (`llm_client.py`, built on LiteLLM) per included posting. Provider is configured via `LLM_PROVIDER` env var; supported defaults include `anthropic` (direct API), `bedrock` (Anthropic models on AWS), `openai`, and `vertex` (Anthropic models on GCP). Any LiteLLM-supported provider works. The system prompt encodes the closed component taxonomy from the section above and instructs the model to return strict JSON conforming to the row schema. The raw posting paragraph is preserved verbatim in `stack_mentions_raw`. Low-confidence extractions (model returns `confidence: low` on any field) are tagged for the spot-check queue. This provider-agnostic design is deliberate: the project is cross-cloud, and the pipeline must be reproducible by anyone with credentials for any one of the supported providers — not just by holders of an Anthropic API key. The README documents per-provider setup including AWS Bedrock model-access gating.
+
+**Spot-check.** A ≥15% random sample of extracted rows is human-reviewed. If sample agreement with the model output is <95%, the extractor prompt is corrected and the pass is re-run. Sample-check results are committed to `captures/2026-q2/spot-check.md` for audit.
+
+**CSV writer.** `load_csv.py` appends rows to `captures/2026-q2/postings.csv`. Idempotent on `posting_id`.
+
+**Pipeline-as-content.** The pipeline itself is a deliverable: a small, real data pipeline that ingests heterogeneous web sources, applies filtering, runs LLM-based extraction, validates against a human-labeled sample, and emits a comparative dataset. This is on-brand for the project — a working demonstration of the practice the test bench is built to compare. The accompanying blog post leans on this framing.
 
 ## Analysis outputs
 
@@ -189,12 +215,13 @@ Subsequent quarterly runs revisit the lineup: a component that appears in 5% of 
 
 ## What this methodology is *not yet*
 
-- Does not yet specify the exact capture protocol (browser-based copy/paste vs. semi-automated scraping). Manual capture is the v0.1 default; automation is a v0.2 question only if N grows past 200.
-- Does not yet have a defined storage shape for the captured data (CSV in repo vs. SQLite vs. DuckDB file). Default to CSV in repo for v0.1; revisit if the analysis becomes complex.
-- Does not yet specify how to handle postings that explicitly say "we're hiring you to choose the stack" — a real signal for the consulting wedge but a noise source for component-frequency counts. v0.1: exclude from frequency counts but capture as a separate list ("companies actively choosing their stack right now") for outreach purposes.
+- Storage shape for the captured data: CSV in repo for v0.1.2. Revisit (SQLite, DuckDB file) if the analysis becomes complex or the row count grows past a few thousand.
+- Handling of postings that explicitly say "we're hiring you to choose the stack" — a real signal for the consulting wedge but a noise source for component-frequency counts. v0.1.2: exclude from frequency counts but route to a separate list (`captures/2026-q2/stack-choosing-companies.md`) for outreach purposes.
+- Wellfound auth fallback path: defaults to public listings; if too many listings are gated behind auth, fall back to Claude in Chrome with a logged-in session. Decision deferred until the first `fetch_wellfound.py` run measures gating rate.
 
 ## Versioning
 
-- **v0.1 (2026-05-10):** Initial methodology. 150 postings, three sources, two-level component taxonomy, quarterly cadence.
+- **v0.1 (2026-05-10):** Initial methodology. 150 postings, three sources (Wellfound + HN + LinkedIn), manual capture, two-level component taxonomy, quarterly cadence.
 - **v0.1.1 (2026-05-10, same day):** Cloud-platform breakdown promoted to a headline output. Cross-cloud co-occurrence (cloud × warehouse × orchestrator) added. "Stack #N selection" section reframed to inform the full indicative lineup (Stacks #2–#5), not just Stack #2.
-- **v0.2 (target: after first analysis run):** Refinements based on what was actually noisy vs. clean in the first capture. Likely revisions: source mix, component taxonomy additions, automation decision.
+- **v0.1.2 (2026-05-11):** LinkedIn replaced by BuiltIn as the third source (LinkedIn API gated, aggregators strip needed fields, BuiltIn is plainer and has better mid-market coverage). Manual capture replaced by a Python pipeline with LLM-assisted extraction + ≥15% human spot-check, verbatim raw text preserved. Pipeline itself reframed as on-brand content for the project.
+- **v0.2 (target: after first analysis run):** Refinements based on what was actually noisy vs. clean in the first run. Likely revisions: source mix tuning, component taxonomy additions, spot-check threshold tuning, decision on LinkedIn-via-paid-aggregator.
