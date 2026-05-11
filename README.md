@@ -67,8 +67,8 @@ posts/                 mirror copies of the comparative writeups
 ## Status
 
 - Canonical task set v0.2 — drafted, public for reaction.
-- Job-posting analysis methodology v0.1.1 — drafted; first capture pending.
-- Stack #1 implementation — not yet started. Orchestrator decision (ADR-001) is the next blocking deliverable.
+- Job-posting analysis methodology v0.1.2 — drafted; first capture in progress as a Python pipeline (`canonical/job-postings/pipeline/`).
+- Stack #1 implementation — not yet started. Orchestrator decision (ADR-001) follows the first job-posting analysis run.
 - Synthetic dataset spec — not yet drafted.
 
 The contract with the audience: meaningful repo activity at least weekly, a long-form ADR or comparative post every 2–3 weeks, no LLM-average filler.

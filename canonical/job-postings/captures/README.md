@@ -9,14 +9,15 @@ One subdirectory per quarterly run, named `YYYY-qN/`:
 ```
 captures/
   README.md
-  2026-q3/
+  2026-q2/                             first capture (May–June 2026)
     postings.csv                       row-per-posting captures per the methodology schema
     cloud-platform-breakdown.csv       headline output: % of postings per cloud
     frequency-by-category.csv          % of postings mentioning each component, per category
     cooccurrence-top-10.csv            top 10 (warehouse, transformation, orchestrator) triples + others
     stage-breakout.csv                 frequency tables re-run on Series A/B vs. mid-market subsets
-    qoq-delta.csv                      from second run onward — percentage-point change vs. prior quarter
-  2026-q4/
+    spot-check.md                      human-reviewed sample log (≥15% of rows)
+    raw/                               JSONL dumps from the fetchers (one file per source)
+  2026-q3/                             second capture (from qoq-delta.csv onward)
     ...
 ```
 
@@ -36,4 +37,4 @@ Each quarterly directory should contain enough information that a stranger can r
 
 ## Cadence
 
-Quarterly. First capture: 2026-Q3, scheduled to run before ADR-001 (orchestrator) is written so the cross-cloud lineup is grounded in evidence rather than priors.
+Quarterly. First capture: **2026-Q2**, in progress. Scheduled to complete before ADR-001 (orchestrator) is written so the cross-cloud lineup is grounded in evidence rather than priors.
