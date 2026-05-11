@@ -140,6 +140,8 @@ def _call_litellm(
     max_tokens: int,
 ) -> dict:
     import litellm  # type: ignore[import]
+    import time
+    import random
 
     messages = [
         {"role": "system", "content": system},
@@ -161,10 +163,35 @@ def _call_litellm(
     if cfg.provider in ("anthropic", "openai", "bedrock", "vertex"):
         kwargs["response_format"] = {"type": "json_object"}
 
-    try:
-        resp = litellm.completion(**kwargs)
-    except Exception as e:  # broad: LiteLLM surfaces many provider error types
-        raise LLMError(f"LLM call failed via {cfg.provider}: {e}") from e
+    # Retry transient rate-limit errors with exponential backoff + jitter.
+    # Bedrock TPM throttles typically clear within a few seconds; 5 attempts
+    # with bases (1, 2, 4, 8, 16) + jitter is enough for the per-quarter scale.
+    max_attempts = 5
+    resp = None
+    last_err: Exception | None = None
+    for attempt in range(max_attempts):
+        try:
+            resp = litellm.completion(**kwargs)
+            break
+        except Exception as e:
+            last_err = e
+            msg = str(e)
+            # Only retry on rate-limit / throttling / 5xx transient errors.
+            is_transient = (
+                "RateLimit" in type(e).__name__
+                or "rate" in msg.lower() and "limit" in msg.lower()
+                or "throttl" in msg.lower()
+                or "ServiceUnavailable" in msg
+                or "InternalServer" in msg
+                or "503" in msg
+                or "529" in msg  # Anthropic overload
+            )
+            if not is_transient or attempt == max_attempts - 1:
+                break
+            sleep_s = (2 ** attempt) + random.uniform(0, 0.5)
+            time.sleep(sleep_s)
+    if resp is None:
+        raise LLMError(f"LLM call failed via {cfg.provider}: {last_err}") from last_err
 
     try:
         content = resp.choices[0].message.content  # type: ignore[union-attr,index]

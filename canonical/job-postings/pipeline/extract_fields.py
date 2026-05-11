@@ -320,22 +320,49 @@ def extract_file(in_path: Path, out_path: Path, *, limit: int | None = None,
     existing = _index_existing(out_path, retry_failed=retry_failed) if resume else {}
 
     # Build the work plan: (idx, record). Preserve original order in `out`.
+    # Multi-source fetchers (e.g., BuiltIn's three role-searches) can land the
+    # same posting in the filtered file at multiple indices; we extract once
+    # per posting_id and fan the result out to every duplicate row.
     work: list[tuple[int, dict]] = []
     out: list[dict | None] = [None] * len(records)
+    work_index_by_id: dict[str, int] = {}  # posting_id -> index of the queued work entry
     extracted_n = 0
     for i, r in enumerate(records):
         if not r.get("included"):
             out[i] = r
             continue
-        prior = existing.get(r["posting_id"])
+        pid = r["posting_id"]
+        prior = existing.get(pid)
         if prior is not None:
             out[i] = prior  # already done in a previous run
+            continue
+        if pid in work_index_by_id:
+            # Second occurrence in this filtered file. Slot the index aside;
+            # we'll backfill once the canonical extraction completes.
+            # Seed with the input record so an interrupted flush still has a
+            # row for this index (without an `extracted` payload yet).
+            out[i] = r
             continue
         if limit is not None and extracted_n >= limit:
             out[i] = r  # left for a future run
             continue
+        # Seed out[i] with the input record. The flush logic writes whatever
+        # is in `out`; if extraction completes, _fan_out overwrites with the
+        # extracted result. If extraction is interrupted, the seeded record
+        # stays on disk (without `extracted`), and the next resume re-queues
+        # it. Without this seed, an interrupted flush deletes the row entirely.
+        out[i] = r
+        work_index_by_id[pid] = i
         work.append((i, r))
         extracted_n += 1
+
+    # Map posting_id -> list of indices that need the result (for fanning out).
+    duplicate_indices: dict[str, list[int]] = {}
+    for i, r in enumerate(records):
+        if not r.get("included") or r["posting_id"] in existing:
+            continue
+        if r["posting_id"] in work_index_by_id and work_index_by_id[r["posting_id"]] != i:
+            duplicate_indices.setdefault(r["posting_id"], []).append(i)
 
     kept_n = low_n = 0
 
@@ -346,11 +373,38 @@ def extract_file(in_path: Path, out_path: Path, *, limit: int | None = None,
         if result["extracted"].get("confidence") == "low":
             low_n += 1
 
+    def _fan_out(canonical_idx: int, result: dict) -> None:
+        out[canonical_idx] = result
+        pid = result["posting_id"]
+        for dup_i in duplicate_indices.get(pid, ()):
+            # Each duplicate row keeps its own source-tracking metadata (e.g.,
+            # search_role from BuiltIn) but inherits the extracted payload.
+            dup = dict(records[dup_i])
+            dup["extracted"] = result["extracted"]
+            out[dup_i] = dup
+
+    # Incremental flush: after every N completed extractions, atomically
+    # rewrite the output file. This bounds data loss on interrupt to the
+    # in-flight batch, which matters when backoff makes runs long-tail.
+    FLUSH_EVERY = 5
+    completed_since_flush = 0
+
+    def _flush() -> None:
+        snapshot = [r for r in out if r is not None]
+        # Atomic write: temp file + rename. Cheap at our row counts.
+        tmp = out_path.with_suffix(out_path.suffix + ".tmp")
+        write_jsonl(tmp, snapshot)
+        tmp.replace(out_path)
+
     if concurrency <= 1:
         for i, r in work:
             result = extract_one(r)
-            out[i] = result
+            _fan_out(i, result)
             _record_stats(result)
+            completed_since_flush += 1
+            if completed_since_flush >= FLUSH_EVERY:
+                _flush()
+                completed_since_flush = 0
             if sleep_s > 0:
                 time.sleep(sleep_s)
     else:
@@ -359,8 +413,12 @@ def extract_file(in_path: Path, out_path: Path, *, limit: int | None = None,
             for fut in as_completed(futures):
                 i = futures[fut]
                 result = fut.result()
-                out[i] = result
+                _fan_out(i, result)
                 _record_stats(result)
+                completed_since_flush += 1
+                if completed_since_flush >= FLUSH_EVERY:
+                    _flush()
+                    completed_since_flush = 0
 
     # Count rows that already had extracted (from previous run) toward kept/low.
     for r in existing.values():
