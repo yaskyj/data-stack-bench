@@ -45,11 +45,11 @@ A frequency-and-co-occurrence analysis of stack components mentioned in real job
 
 Four candidate sources, three included:
 
-**Wellfound (formerly AngelList Talent) — primary.** Startup-focused, often more authentic descriptions written by founders or hiring engineers, strong signal on Series A/B exactly inside the anchor buyer profile. Weight: high.
+**BuiltIn (builtin.com) — primary, workhorse source (v0.1.3).** Tech-focused job board with strong coverage of 50–250-employee mid-market companies in NYC/SF/Chicago/LA/Austin. Plain HTML pages, employee-size and role-type filtering, no auth wall. Every detail page embeds the full JD in a schema.org JobPosting JSON-LD block, so the stack-mentions paragraph is always present — this is structurally why BuiltIn yields ~10-15× HN per candidate processed. Promoted to workhorse at v0.1.3 after first capture; replaces LinkedIn at v0.1.2 (see v0.1.2 changes above for the LinkedIn drop rationale).
 
-**Hacker News "Who's Hiring" monthly threads — primary.** Engineer-written job postings, very high content quality, low HR/recruiter padding, but skewed to YC/SV companies. Strong signal precisely because the descriptions name specific tools. Weight: high. Fetched via the public HN Algolia API.
+**Wellfound (formerly AngelList Talent) — primary in principle, deferred to v0.2 in practice.** Startup-focused, often more authentic descriptions written by founders or hiring engineers, strong signal on Series A/B exactly inside the anchor buyer profile. **At v0.1.3, deferred:** wellfound.com sits behind DataDome bot mitigation; every public URL returns 403 without a JS-executing browser. The Claude in Chrome fallback works but is fragile and time-consuming. Skipped in the 2026-Q2 capture; revisit at v0.2 if N remains sample-size-limited after Q3.
 
-**BuiltIn (builtin.com) — primary, for mid-market coverage.** Tech-focused job board with strong coverage of 100–250-employee mid-market companies in NYC/SF/Chicago/LA/Austin. Plain HTML pages, employee-size and role-type filtering, no auth wall. Replaces LinkedIn at v0.1.2 (see v0.1.2 changes above for the LinkedIn drop rationale). Weight: high.
+**Hacker News "Who's Hiring" monthly threads — supplementary (v0.1.3).** Engineer-written job postings, very high content quality, low HR/recruiter padding, but skewed to YC/SV companies. Was "primary" at v0.1.2; demoted to supplementary at v0.1.3 because per-thread keep rate is structurally ~3-5 (multi-role aggregator format where comments link to an ATS without embedding the JD), and HN thread lifespan ~14 days means the 60-day freshness window can capture at most ~2.5 full threads per quarter. Ceiling ~10-15 keeps per quarter regardless of effort. Fetched via the public HN Algolia API.
 
 **Indeed — excluded.** Volume is high but signal is poor. Heavy on agencies and reposts, and the descriptions skew toward role responsibilities rather than stack specifics. Excluded from v0.1 of this analysis. Revisit if the other three don't yield enough postings for the mid-market end of the buyer profile.
 
@@ -102,13 +102,13 @@ Apply in order. A posting that fails any filter is excluded.
 
 200 postings gives marginally tighter CIs on the tail but the marginal cost in research time vs. the marginal information gain isn't worth it — and at 200 the analysis bleeds into "this isn't a side project anymore."
 
-150 postings is the sweet spot:
-- ~50 from each high-quality source × the mix above.
+150 postings is the sweet spot in principle:
+- Source-mix-weighted per the v0.1.3 targets (100 BuiltIn / 40 Wellfound / 10 HN). Earlier versions of this section assumed ~50 from each high-quality source; first-run reality forced the rebalance.
 - Tight enough CIs on the top 20 components (a component mentioned in 30 postings ± 5 has a margin of error around ±5 percentage points at 95% confidence — useful).
 - Enough sample to break out by company stage if patterns diverge: ~75 in the Series A/B end, ~75 in the mid-market end. Each subgroup is roughly the size of a 100-posting full sample with somewhat looser CIs — usable but not strong.
 - A research effort that fits in roughly 8–12 hours of focused capture time per quarter, which keeps the cadence sustainable.
 
-If after the first run, signal is too noisy at the tail (the 5–15% range), bump to 200 next quarter. Don't pre-decide that — let the v0.1 run inform it.
+**First-run reality (2026-Q2):** N=40 actual, well below target. Causes: HN per-thread yield is ~3-5 (not 25); Wellfound deferred to v0.2 (DataDome blocked the public path). Headline aggregations (cloud %, top warehouse, top orchestrator) are still tight enough to make Stack #N selection decisions; tail-of-distribution components (5–15% range) carry wider error bars. Future quarters should hit 120-150 with revised BuiltIn coverage (more pages, more role-search profiles); revisit Wellfound automation if N stays below 120 after Q3.
 
 ## Extraction schema
 
@@ -179,7 +179,7 @@ Capture is a Python pipeline in `canonical/job-postings/pipeline/`. Three fetche
 
 - `fetch_hn.py` — pulls "Who is hiring" thread comments via the public HN Algolia API (`hn.algolia.com/api/v1/...`). Configurable thread list (default: most recent two monthly threads). Output: one JSONL per thread with `{posting_id, source_url, posting_date, raw_text}` per comment.
 - `fetch_builtin.py` — scrapes BuiltIn search-result pages plus per-posting detail pages via HTTP + BeautifulSoup. Search filters baked into the URL: company size 50–250, role types in the include list, geo US + remote. Plain HTML; no auth required. Output: same JSONL schema.
-- `fetch_wellfound.py` — Wellfound (formerly AngelList) public job listings via HTTP + BeautifulSoup where the listing is accessible without login; falls back to Claude in Chrome for sessions that require auth. Output: same JSONL schema.
+- `fetch_wellfound.py` — *not yet implemented (deferred at v0.1.3).* Intended: Wellfound (formerly AngelList) public job listings via HTTP + BeautifulSoup where the listing is accessible without login; fall back to Claude in Chrome for sessions that require auth. **Probed 2026-05-11:** wellfound.com is gated by DataDome bot mitigation — every public URL returns 403 to non-JS clients. The Claude-in-Chrome fallback would be the path forward, but for the 2026-Q2 capture we accepted N=40 from HN+BuiltIn rather than invest the time. Revisit at v0.2.
 
 **Filter pass.** `filter_postings.py` reads the raw JSONLs and applies the v0.1.2 inclusion filters (company stage/size, role title/function, seniority, geography, industry, posting freshness). Each posting gets `included: bool` and `exclude_reason: str` recorded. Exclusions are kept in the file (not deleted) so the filter pass is auditable.
 
@@ -227,7 +227,7 @@ Subsequent quarterly runs revisit the lineup: a component that appears in 5% of 
 
 - Storage shape for the captured data: CSV in repo for v0.1.2. Revisit (SQLite, DuckDB file) if the analysis becomes complex or the row count grows past a few thousand.
 - Handling of postings that explicitly say "we're hiring you to choose the stack" — a real signal for the consulting wedge but a noise source for component-frequency counts. v0.1.2: exclude from frequency counts but route to a separate list (`captures/2026-q2/stack-choosing-companies.md`) for outreach purposes.
-- Wellfound auth fallback path: defaults to public listings; if too many listings are gated behind auth, fall back to Claude in Chrome with a logged-in session. Decision deferred until the first `fetch_wellfound.py` run measures gating rate.
+- Wellfound integration: probed 2026-05-11, found DataDome bot mitigation blocks all public URLs. Path forward is Claude in Chrome with a logged-in session, deferred to v0.2 (see Sources section). Decision criteria for revisiting: if Q3 BuiltIn-heavy capture lands below N=120, invest the time on Wellfound automation; if N=120+, accept the two-source mix and leave Wellfound on the bench.
 
 ## Versioning
 
