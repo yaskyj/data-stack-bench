@@ -1,0 +1,6 @@
+cloud,n_postings,pct_of_total
+none_stated,19,47.5
+aws,16,40.0
+gcp,5,12.5
+azure,4,10.0
+multicloud,1,2.5

@@ -1,10 +1,18 @@
-# Job-posting analysis — methodology spec v0.1.2
+# Job-posting analysis — methodology spec v0.1.3
 
-**Version:** 0.1.2 (draft)
+**Version:** 0.1.3 (draft)
 **Date:** 2026-05-11
-**Status:** Spec for execution. The analysis itself runs against this spec via a Python pipeline (see "Capture protocol" below). Sequencing update: this analysis runs *before* ADR-001 (orchestrator), not in parallel — the lineup informs orchestrator constraints.
+**Status:** First capture (2026-Q2) executed against v0.1.2 of this spec; v0.1.3 incorporates the findings from that run. Future quarterly runs use v0.1.3. Sequencing: this analysis runs *before* ADR-001 (orchestrator), not in parallel — the lineup informs orchestrator constraints.
 
-**v0.1.2 changes from v0.1.1:**
+**v0.1.3 changes from v0.1.2 (post first-run revisions):**
+- **HN per-thread keep rate is ~3-5 postings, not the ~25 the v0.1 source mix implicitly modeled.** Root cause: the modern "Ask HN: Who is hiring?" format is dominated by multi-role aggregator posts — HN comments that list several openings and link out to an ATS without embedding the JD body. Even when a role/industry/size combination passes the inclusion filters, the stack-mentions paragraph (the load-bearing extraction for this analysis) isn't in the comment text. The 2026-Q2 run had 4 HN threads in scope by the 60-day freshness window (only the most recent two threads fully in scope; the third partially, the fourth out); 1414 raw comments → 84 mechanical-filter passes → 7 LLM keeps. About one in 200 raw HN comments yields a usable row.
+- **HN thread lifespan is ~14 days.** Threads stop accumulating top-level postings ~2 weeks after they open. With a 60-day freshness cutoff, at most 2 full threads + part of a third land inside the window. Pulling older threads doesn't help — their late-cycle comments are still older than 60 days. This means HN's contribution to any quarterly run is bounded above ~10-15 keeps regardless of effort.
+- **BuiltIn yields ~10-15x HN per candidate processed.** 2026-Q2 run: 303 raw → 213 mechanical-pass → ~33 LLM keeps. The cause is structural: BuiltIn detail pages embed the full JD in a schema.org JobPosting JSON-LD block, so the stack paragraph is always present. BuiltIn deserves to be the workhorse source, not the third leg.
+- **Source mix target rebalanced.** Old (v0.1.2): 50 HN / 50 BuiltIn / 50 Wellfound = 150 total. New (v0.1.3): 10 HN / 100 BuiltIn / 40 Wellfound = 150 total, with BuiltIn carrying the load. HN is kept in the mix because (a) HN postings sometimes name stack components that BuiltIn JDs don't (HN is engineer-written, BuiltIn is HR-written), and (b) the YC-startup skew is a useful counterweight to BuiltIn's mid-market skew. But its weight is much smaller.
+- **Wellfound deferred to v0.2.** wellfound.com sits behind DataDome bot mitigation; every public URL returns 403 without a JS-executing browser. The methodology v0.1.2 fallback ("Claude in Chrome with a logged-in session") works but is fragile and time-consuming. For 2026-Q2 we accepted 40 keeps from HN+BuiltIn rather than spend additional effort on a third source whose marginal contribution to the headline aggregations is small at this sample size. v0.2 revisits: if N=150 isn't reached after Q3 BuiltIn runs more aggressively, invest in Wellfound automation or a paid aggregator (Coresignal/JSearch).
+- **N=150 target softened to N=120-150.** First run yielded N=40, well below target. Future quarters with revised BuiltIn coverage (more pages, more role-search profiles) should hit N=120+. Tail-component confidence intervals are looser at N=40 than at N=150, but headline aggregations (cloud %, top warehouse/orchestrator/transformation) are tight enough at N=40 to make Stack #N selection decisions. Documented in the Q2 writeup; tighten in Q3.
+
+**v0.1.2 changes (kept for the record):**
 - **LinkedIn → BuiltIn as the third source.** LinkedIn's API is gated behind a Talent Solutions partnership program and self-serve access doesn't exist. Aggregator services (Coresignal, Bright Data, JSearch on RapidAPI) sit in ToS gray and return normalized field sets that strip the "tools you'll use" paragraph this analysis depends on. BuiltIn (builtin.com) is a mid-market tech-focused job board with employee-size filtering, plain HTML, no auth wall, and substantially better mid-market coverage of the anchor buyer profile than LinkedIn would have provided. `linkedin` is reserved in the source enum for future use but not used in v0.1.
 - **Manual capture → Python pipeline + LLM-assisted extraction.** v0.1's "don't build a parser; just read and tag" reasoning was written assuming a solo builder with no agent tools. With Cowork + Claude Code + Anthropic API available, a programmatic pipeline is faster, runs unattended quarterly, and is itself a portfolio artifact on-brand for the project. The pipeline preserves verbatim posting text in `stack_mentions_raw` (so the source-of-truth is not lossy), populates normalized fields via LLM extraction with confidence scores, and flags ambiguous cases for human spot-check. A ≥15% random sample is human-reviewed before any analysis output is generated; if sample agreement is below 95% the pipeline is corrected and the run repeats. The blog post framing for this run is "I built a small data pipeline to map the modern data stack hiring market" — better content than "I read 150 postings."
 
@@ -47,10 +55,12 @@ Four candidate sources, three included:
 
 **LinkedIn — reserved, not used in v0.1.** API access is gated; aggregator services strip the fields this analysis depends on. Reconsidered at v0.2 if Coresignal or a similar source becomes affordable and a richer field set is available.
 
-**Source mix target for the quarterly run:**
-- Wellfound: ~50 postings
-- HN Who's Hiring: ~50 postings (pulled from the most recent two threads)
-- BuiltIn: ~50 postings
+**Source mix target for the quarterly run (v0.1.3, post first-run revision):**
+- BuiltIn: ~100 postings (workhorse — full JDs in JobPosting JSON-LD)
+- Wellfound: ~40 postings (when accessible; deferred at v0.1)
+- HN Who's Hiring: ~10 postings (per-thread keep rate is structurally low; ceiling ~15)
+
+Total target: ~150 postings, same N as v0.1.2 but redistributed by observed yield. **v0.1.2's original 50/50/50 mix was wishful thinking** — see v0.1.3 changes block above for the data behind this rebalance.
 
 Source weighting in the final analysis: each posting counts as one observation regardless of source. The narrative interpretation calls out where one source disagrees with another (e.g., "Snowflake is mentioned in 70% of BuiltIn postings but 40% of HN postings — likely a corporate-vs-startup divergence, not a measurement artifact").
 
@@ -224,4 +234,5 @@ Subsequent quarterly runs revisit the lineup: a component that appears in 5% of 
 - **v0.1 (2026-05-10):** Initial methodology. 150 postings, three sources (Wellfound + HN + LinkedIn), manual capture, two-level component taxonomy, quarterly cadence.
 - **v0.1.1 (2026-05-10, same day):** Cloud-platform breakdown promoted to a headline output. Cross-cloud co-occurrence (cloud × warehouse × orchestrator) added. "Stack #N selection" section reframed to inform the full indicative lineup (Stacks #2–#5), not just Stack #2.
 - **v0.1.2 (2026-05-11):** LinkedIn replaced by BuiltIn as the third source (LinkedIn API gated, aggregators strip needed fields, BuiltIn is plainer and has better mid-market coverage). Manual capture replaced by a Python pipeline with LLM-assisted extraction + ≥15% human spot-check, verbatim raw text preserved. Pipeline itself reframed as on-brand content for the project.
-- **v0.2 (target: after first analysis run):** Refinements based on what was actually noisy vs. clean in the first run. Likely revisions: source mix tuning, component taxonomy additions, spot-check threshold tuning, decision on LinkedIn-via-paid-aggregator.
+- **v0.1.3 (2026-05-11, same day, post first capture):** Source mix rebalanced after observed per-source yields: HN per-thread keep rate is ~3-5 (multi-role aggregator format, low signal density), BuiltIn is ~10-15x richer per candidate (JD in JSON-LD), Wellfound deferred to v0.2 (DataDome bot mitigation makes the public-listing path infeasible without browser automation). New target mix: 100 BuiltIn / 40 Wellfound / 10 HN. Target N softened to 120-150 in recognition of first-run reality. First capture (2026-Q2) landed N=40 with two sources.
+- **v0.2 (target: after Q3 capture):** Decisions deferred: (a) whether to invest in Claude in Chrome automation for Wellfound or a paid aggregator (Coresignal/JSearch); (b) component taxonomy additions from observed un-mapped tools (e.g., LangGraph, QLoRA — currently captured in `notes`); (c) spot-check threshold tuning if the v0.1.2 ≥15% / 95% bar is wrong; (d) whether to expand the role-keyword filter to capture borderline DPE-flavored postings the v0.1 regex misses.
