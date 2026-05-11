@@ -67,7 +67,7 @@ posts/                 mirror copies of the comparative writeups
 ## Status
 
 - Canonical task set v0.2 — drafted, public for reaction.
-- Job-posting analysis methodology v0.1.2 — drafted; first capture in progress as a Python pipeline (`canonical/job-postings/pipeline/`).
+- Job-posting analysis methodology v0.1.3 — first capture complete. Pipeline at `canonical/job-postings/pipeline/`; outputs at `canonical/job-postings/captures/2026-q2/` (N=40, two of three sources — HN + BuiltIn; Wellfound deferred to v0.2). Headline reads: cloud platform AWS 40% / GCP 12.5% / Azure 10%; warehouse leaders Snowflake 42.5%, BigQuery 25%, Redshift 20%, Databricks 15%; top three-tuple `snowflake | dbt_core | airflow` at 22.5%. Spot-check signed off pending; analysis writeup is the next public artifact.
 - Stack #1 implementation — not yet started. Orchestrator decision (ADR-001) follows the first job-posting analysis run.
 - Synthetic dataset spec — not yet drafted.
 
