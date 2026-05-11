@@ -1,4 +1,366 @@
 posting_id,source,source_url,captured_date,posting_date,company_name,company_size_band,company_stage_signal,industry,role_title_raw,role_title_normalized,seniority,geo,stack_mentions_raw,stack_components_normalized,notes,confidence
+db489962b042,builtin,https://builtin.com/job/senior-platform-engineer-data-analytics/7426268,2026-05-11,2026-05-10,Avant,250-500-conditional,mid-market,fintech-regulated,"Senior Platform Engineer, Data & Analytics",data_platform_engineer,senior,us,"Evolve and expand our core data and analytics stack, working with technologies like Kafka, Databricks, Spark, dbt, and Kubernetes to make advanced capabilities accessible to everyone.
+
+Experience with our core stack: Databricks, Spark, Kafka, Airflow, Temporal, or dbt.
+
+Hands-on experience with Terraform and AWS services relevant to data platforms (e.g., S3, EKS, MSK, DMS, Glue).","[{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""warehouse"",""instance"":""databricks""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""orchestration"",""instance"":""temporal""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""streaming"",""instance"":""msk""},{""category"":""cdc"",""instance"":""dms""},{""category"":""iac"",""instance"":""terraform""}]","Avant is a digital lending/fintech company (~500+ employees range but posting describes a focused agile data platform team). Role is explicitly platform engineering for data & ML infrastructure — hands-on build mandate, not maintenance. Airflow, Temporal, Databricks, Kafka, dbt listed as 'nice to have / core stack' — aspirational framing for some. Kubernetes mentioned but not in taxonomy (omitted). Spark mentioned but not in taxonomy (omitted). AWS Glue mentioned but not in taxonomy (omitted). GenAI/LLM work mentioned as emerging initiative but no specific LLM provider named. Company size is likely 500+ (Avant is a well-known digital bank), but posting describes a small focused platform team — flagged as 250-500-conditional for review.",medium
+a0567bbda604,builtin,https://builtin.com/job/senior-data-analytics-engineer/8053917,2026-05-11,2026-05-01,WorkWave,250-500-conditional,mid-market,saas,Senior Data Analytics Engineer,analytics_engineer,senior,remote_us_hq,"Pipeline Architecture: Expertise in architecting data pipelines and ETL processes, with tools like Fivetran, Snowflake, and DBT.
+
+Visualization Proficiency: Experience building visual data analytic business-driven solutions using tools like PowerBI, Sigma, or similar analytic tools.
+
+Cloud & Big Data: Familiarity with cloud platforms like AWS and experience with big data technologies such as Snowflake.","[{""category"":""ingestion_elt"",""instance"":""fivetran""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""bi"",""instance"":""powerbi""},{""category"":""bi"",""instance"":""sigma""},{""category"":""bi"",""instance"":""tableau""},{""category"":""cloud_platform"",""instance"":""aws""}]","WorkWave is a field service management SaaS company; size is likely 500+ based on awards and global footprint (30+ states, 7 countries), but the posting explicitly describes a 'Startup AI and Data Analytics Business Unit' suggesting a small embedded data team. Tableau mentioned in body text under 'Gold Standard' data models section. AWS listed as aspirational/nice-to-have ('familiarity with'). Role blends data engineering and analytics engineering responsibilities.",medium
+ae5f5b854219,builtin,https://builtin.com/job/senior-analytics-engineer/7629320,2026-05-11,2026-05-05,Origin,100-250,series-b,fintech-software,Senior Analytics Engineer,analytics_engineer,senior,remote_us_hq,"Design and maintain scalable data architecture, pipelines, and models using dbt, Airflow, and Redshift.
+
+Build reusable datasets that power analytics, experimentation, and business intelligence.
+
+Collaborate with Engineering to define event tracking and instrumentation standards.
+
+Develop core metrics, dashboards, and self-serve tools for stakeholders.
+
+Advanced SQL skills, including window functions and CTEs.
+
+Experience with Python for analysis, modeling, or automation.
+
+Hands-on experience building dbt models and Airflow pipelines.
+
+Proficiency with BI and visualization tools (Tableau, Metabase, Power BI, Mode).
+
+AWS data infrastructure experience (Redshift, S3, Terraform).","[{""category"":""warehouse"",""instance"":""redshift""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""bi"",""instance"":""tableau""},{""category"":""bi"",""instance"":""metabase""},{""category"":""bi"",""instance"":""powerbi""},{""category"":""bi"",""instance"":""mode""},{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""iac"",""instance"":""terraform""}]",Role described as 'one of the earliest members of our data team' — small data team confirmed. Terraform and AWS listed as nice-to-have/aspirational. S3 mentioned but not in taxonomy (omitted). GitHub mentioned as nice-to-have (version-controlled workflows).,medium
+dbf120fd3348,builtin,https://builtin.com/job/data-engineer/7415754,2026-05-11,2026-05-10,Whatnot,250-500-conditional,series-c,marketplace,Data Engineer,data_engineer,senior,us,"Have deep hands-on expertise with modern data tooling across ingestion (e.g., Kafka, Debezium), transformation (dbt, Spark, Flink), orchestration (Dagster, Airflow), and observability (Monte Carlo, Great Expectations).
+
+Have operated cloud data warehouses such as Snowflake, BigQuery, or Redshift, including schema design, cost optimization, and workload tuning.
+
+Are comfortable writing production-grade code in Python or SQL languages, and integrating with CI/CD and infrastructure-as-code workflows.","[{""category"":""streaming"",""instance"":""kafka""},{""category"":""cdc"",""instance"":""debezium""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""orchestration"",""instance"":""dagster""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""observability_dq"",""instance"":""monte_carlo""},{""category"":""observability_dq"",""instance"":""great_expectations""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""warehouse"",""instance"":""bigquery""},{""category"":""warehouse"",""instance"":""redshift""}]","Whatnot is a well-known Series C+ marketplace (raised ~$260M+). Company is likely >500 employees but the posting describes cross-functional placement across product, analytics, or data platforms teams suggesting a distributed data team structure. Spark and Flink mentioned as transformation tools — not in taxonomy, noted here. CI/CD and IaC mentioned generically without specific tooling named. Salary range ($180k–$260k) and multi-hub US presence consistent with a scaled startup. Size band marked 250-500-conditional given ambiguity; company may actually exceed 500 employees.",medium
+3232c4a6ae1f,builtin,https://builtin.com/job/data-engineer-ii/8403183,2026-05-11,2026-05-02,WHOOP,250-500-conditional,series-c,healthtech-software,Data Engineer II,data_engineer,mid,us,"With a strong focus on modern AWS infrastructure and tooling such as Snowflake, DBT, Kafka, and Spark, you will help elevate our analytical and operational capabilities.
+
+Design, build, and operate scalable ELT pipelines using Python and PySpark, with a focus on reliability, performance, and maintainability
+
+Own and improve batch and streaming data systems using Spark and Kafka, including monitoring and resolving production data issues
+
+Develop and optimize Snowflake data models and DBT transformations to support analytics, experimentation, and trusted metrics
+
+Experience with DBT for data modeling, testing, and documentation is preferred
+
+Experience with Spark and Kafka for batch or streaming data processing is preferred","[{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""observability_dq"",""instance"":""dbt_tests""}]","WHOOP is a wearable fitness/health tech company; classified as healthtech-software. Company size is likely 500+ but posting describes a mid-level individual contributor role with no indication of a large dedicated data platform team — marked 250-500-conditional pending verification. PySpark/Spark mentioned for batch and streaming processing (not in taxonomy — omitted from normalized components). AI tools (Copilot, ChatGPT) mentioned as productivity aids, not core stack. dbt_tests inferred from 'DBT for data modeling, testing, and documentation'.",medium
+134707cbb439,builtin,https://builtin.com/job/senior-nlp-data-engineer/7993043,2026-05-11,2026-04-23,iManage,250-500-conditional,mid-market,saas,Senior AI Data Engineer,data_engineer,senior,us,"Designing, developing and maintaining scalable pipelines in MSFT Azure to ingest and transform large volumes of text data from multiple sources
+
+Designing automated workflows for text normalization, deduplication, language identification, PII redaction and metadata enrichment
+
+Building automated data validation processes to ensure accuracy and consistency
+
+Supporting model fine-tuning, semantic search and Gen AI evaluations tuning through dataset curation, prompt dataset preparation, labeling coordination, and text quality validation
+
+Strong proficiency in Python, PySpark, and data manipulation for large unstructured text datasets.
+
+Strong understanding of NLP concepts such as tokenization, embeddings, semantic search, and experience with standard text libraries such as SpaCy, HuggingFace Datasets, NLTK.
+
+Solid dataOps knowledge and experience orchestrating advanced NLP data pipelines using cloud based data infrastructure
+
+Exposure to Microsoft Azure Services such as Fabric, ADLS, AI Foundry, Azure ML, MLflow","[{""category"":""cloud_platform"",""instance"":""azure""},{""category"":""experiment_tracking"",""instance"":""mlflow""},{""category"":""ml_eval"",""instance"":""custom""}]","iManage describes itself as a SaaS company with 1M+ professionals across 65+ countries — likely 500–1000+ employees, but the Applied AI team appears to be a small focused team. Company size is ambiguous; marking 250-500-conditional. Azure Fabric and ADLS mentioned as aspirational/bonus. Azure ML mentioned as aspirational/bonus. SpaCy, HuggingFace Datasets, NLTK are NLP libraries not in taxonomy. Role is primarily data pipeline engineering for AI/ML (feature engineering, dataset curation, text pipelines) rather than pure ML inference — qualifies as data_engineer with AI focus. MLflow listed as bonus/aspirational.",medium
+e936073f1248,builtin,https://builtin.com/job/data-engineer/3099890,2026-05-11,2026-05-11,Kalshi,50-100,series-b,fintech-regulated,"Software Engineer, Data",data_engineer,senior,us,"Our tech stack includes Python, SQL, DBT for data analytics and pipelining, pipelining and machine learning, Spark for big data processing, and visualization through Superset. We leverage cloud platforms such as AWS for scalable data storage and computational needs.
+
+Proven track record in data pipeline development using modern orchestration tools (Airflow, Flink, Dagster)
+
+Production experience with real-time data streaming platforms like Apache Kafka and Flink
+
+Hands-on expertise with major cloud data warehouses (Snowflake, Redshift) and traditional databases like PostgreSQL
+
+Strong data visualization skills using industry-standard tools (Tableau, Superset, Looker)","[{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""orchestration"",""instance"":""dagster""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""warehouse"",""instance"":""redshift""},{""category"":""bi"",""instance"":""preset_superset""},{""category"":""bi"",""instance"":""tableau""},{""category"":""bi"",""instance"":""looker""}]","Kalshi is a CFTC-regulated prediction markets exchange — classified as fintech-regulated. Company described as 'relatively small team' and fastest-growing; estimated 50-100 band. Role is a hybrid data engineer / analytics engineer / light MLE (feature pipelines, model deployment support). Apache Flink mentioned for streaming/orchestration — not in taxonomy, noted here. PostgreSQL mentioned as operational DB, not as warehouse. Snowflake and Redshift listed as aspirational/required experience alongside AWS explicit mention. 4+ years experience required maps to senior.",medium
+1d29523b21ec,builtin,https://builtin.com/job/senior-data-engineer/7449033,2026-05-11,2026-05-10,January,50-100,series-b,fintech-regulated,Senior Data Engineer,data_engineer,senior,us,"Own and optimize our entire data platform — taking our Snowflake warehouse from analyst-maintained to engineer-optimized while standardizing data models for customer reporting, operational dashboards, and ML features
+
+Build self-healing data pipelines — designing ETL processes that scale automatically with volume, implementing monitoring that catches issues before anyone notices, and optimizing costs without sacrificing performance
+
+Institute modern data practices — implementing testing frameworks, building CI/CD pipelines for infrastructure changes, and creating documentation that enables others to extend your work
+
+Data Model Redesign : Architect unified models that reduce query redundancy for client reporting by 50% while maintaining flexibility
+
+Pipeline Reliability : Strengthen monitoring systems to catch 99% of issues before they impact users
+
+Cost Optimization : Reduce our Snowflake spend by 30-40% through intelligent clustering and lifecycle management
+
+Analytics Enablement : Create semantic layers that enable technical and non-technical users alike to easily extract value from rich user data
+
+Deep expertise with modern data warehouses (Snowflake, BigQuery, or Redshift) including performance tuning and cost optimization
+
+Production experience with dbt or similar transformation tools, including testing and documentation best practices
+
+Proven ability to build and maintain ETL/ELT pipelines at scale using modern orchestration tools
+
+Experience with streaming architectures and real-time analytics
+
+Familiarity with ML infrastructure and feature stores","[{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""warehouse"",""instance"":""bigquery""},{""category"":""warehouse"",""instance"":""redshift""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""semantic_layer"",""instance"":""none""}]","Founding data engineer role — explicitly a 1-person data engineering team. Company is in consumer debt/collections fintech with compliance emphasis but role is not compliance-dominated; core work is data platform engineering. BigQuery and Redshift mentioned as alternatives to Snowflake in requirements, not necessarily in current stack. Streaming architectures listed as aspirational/bonus. ML feature stores listed as aspirational/bonus. Semantic layer work described as a key project deliverable but no specific tool named — omitted from normalized stack. dbt inferred from 'dbt or similar transformation tools'; tagged as dbt_core given no mention of dbt Cloud. Orchestration tool not named explicitly.",medium
+de1a0b1345ab,builtin,https://builtin.com/job/senior-data-engineer/7416482,2026-05-11,2026-05-10,Perchwell,50-100,series-b,marketplace,"Senior Software Engineer, Data",data_engineer,senior,us,"You've mastered the art of workflow orchestration using modern tools like Airflow, Dagster, or Prefect, ensuring data flows smoothly and reliably
+
+Experience with cloud architecture (preferably AWS) and technologies including S3, SQS, RDS, EMR, Glue, Athena, and Lambda
+
+Experience working  with data warehouses: redshift, snowflake, ClickHouse or google bigquery
+
+Experience building CI/CD pipelines using GitLab, GitHub actions, Terraform, or Jenkins","[{""category"":""orchestration"",""instance"":""airflow""},{""category"":""orchestration"",""instance"":""dagster""},{""category"":""orchestration"",""instance"":""prefect""},{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""warehouse"",""instance"":""athena""},{""category"":""warehouse"",""instance"":""redshift""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""warehouse"",""instance"":""clickhouse""},{""category"":""warehouse"",""instance"":""bigquery""},{""category"":""cicd"",""instance"":""github_actions""},{""category"":""cicd"",""instance"":""jenkins""},{""category"":""iac"",""instance"":""terraform""}]","Company backed by Lux Capital and Founders Fund; stage inferred as series-b based on 'similar stage growth companies' language and VC backing. Company size estimated at 50-100 based on being described as a newer entrant with a 'new initiative' data team. Airflow, Dagster, Prefect listed as alternatives (aspirational breadth). Redshift, Snowflake, ClickHouse, BigQuery listed as alternatives. GitLab CI mentioned in posting but not in taxonomy — omitted. S3, SQS, RDS, EMR, Glue, Lambda are AWS services noted but not individually in taxonomy. Role is titled Software Engineer but is clearly a data engineering role with pipeline, warehouse, and orchestration focus.",medium
+de686e834612,builtin,https://builtin.com/job/product-engineer-data-platform/6348692,2026-05-11,2026-05-09,Radar,100-250,series-b,saas,Senior / Staff Data Platform Engineer,data_platform_engineer,staff,remote_us_hq,"Our data stack includes Kinesis, S3, Athena, Terraform, Airflow, Parquet, Metabase, Python, Redis, MongoDB, and Kubernetes.
+
+Work on core Radar data infrastructure built with Kinesis, S3, Athena, Terraform, Airflow, Parquet, Metabase, Python, Redis, and Mongo (some of these need to be replaced - you'll help figure out what that looks like)
+
+Besides experience with some of our current data stack, have experience with several of Snowflake, Clickhouse, Databricks, Dynamo and dbt or similar tools","[{""category"":""streaming"",""instance"":""kinesis""},{""category"":""warehouse"",""instance"":""athena""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""open_table_format"",""instance"":""parquet_only""},{""category"":""bi"",""instance"":""metabase""},{""category"":""iac"",""instance"":""terraform""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""warehouse"",""instance"":""clickhouse""},{""category"":""warehouse"",""instance"":""databricks""},{""category"":""transformation"",""instance"":""dbt_core""}]","S3 not in taxonomy (object storage). Redis and MongoDB not in taxonomy (operational stores). Kubernetes not in taxonomy. Snowflake, Clickhouse, Databricks, and dbt listed as aspirational/desired experience ('have experience with several of... or similar tools'). Migration implied: current stack (Athena, Kinesis, Airflow) may be partially replaced — candidate helps determine what. Company raised $85.5M total; series-b inferred. Size not explicitly stated but scale (1B API calls/day, Accel/Insight-backed, NYC HQ + engineering team described) suggests 100–250 range.",medium
+ebea0b24c25c,builtin,https://builtin.com/job/senior-data-engineer/8628037,2026-05-11,2026-05-07,Fusion Risk Management,250-500-conditional,unknown,saas,Senior Data Engineer,data_engineer,senior,remote_us_hq,"Strong understanding of ETL/ELT patterns, orchestration (e.g., Airflow, Dagster, dbt, or similar), and pipeline reliability.• Experience with open-source or self-hosted data infrastructure components and a pragmatic sense for build-vs-buy trade-offs.• Experience designing and implementing enterprise system integrations, connectors, and APIs.• Strong engineering fundamentals with focus on scalability, performance, monitoring, and security.• Familiarity with containerized deployments and orchestration (Docker, Kubernetes, Helm, or similar) (bonus).• Experience with temporal or bitemporal data modeling patterns (bonus).• Experience with Salesforce or ServiceNow data models and integrations (bonus).• Strong Python or Java skills for building backend services (bonus).• Familiarity with AI-assisted development tools (e.g., Copilot, Cursor, Claude Code, or similar) and comfort using them to accelerate engineering workflows.
+
+Experience working in cloud-native environments (Azure preferred).","[{""category"":""cloud_platform"",""instance"":""azure""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""orchestration"",""instance"":""dagster""},{""category"":""transformation"",""instance"":""dbt_core""}]","Fusion Risk Management is a business resilience/continuity SaaS platform. Company size estimated ~250-500 range (mid-market SaaS); posting describes a greenfield platform build suggesting a small data team. Role is heavily graph-database focused (Gremlin, Cypher, SPARQL mentioned as aspirational/required knowledge — graph query languages not in taxonomy). Airflow, Dagster, dbt listed as examples ('or similar') — aspirational framing. Azure is preferred cloud. Docker/Kubernetes mentioned as bonus/nice-to-have. Salesforce/ServiceNow integrations mentioned as bonus. Python/Java for backend services mentioned as bonus. Graph databases (e.g., Neo4j) not in taxonomy — noted for v0.2 review.",medium
+888faaede70f,builtin,https://builtin.com/job/senior-software-engineer-foundational-data-systems-ai/7633322,2026-05-11,2026-05-06,Granica,50-100,series-a,devtools,Senior Software Engineer – Foundational Data Systems for AI,data_platform_engineer,senior,us,"Production experience with Spark , Flink , or custom distributed engines on cloud object storage.
+
+Familiarity with Iceberg , Delta Lake , or Hudi .
+
+Experience with columnar formats such as Parquet or ORC and low-level encoding strategies.","[{""category"":""open_table_format"",""instance"":""iceberg""},{""category"":""open_table_format"",""instance"":""delta""},{""category"":""open_table_format"",""instance"":""hudi""},{""category"":""open_table_format"",""instance"":""parquet_only""}]","Spark and Flink mentioned as required experience but are not in the taxonomy — noted for v0.2 review. ORC columnar format also not in taxonomy. Iceberg/Delta/Hudi listed as 'Bonus' (aspirational). Company appears to be an early-stage AI data infrastructure startup (devtools/data infra); size estimated ~50-100 based on startup signals and research-group partnership framing. Role is hands-on distributed systems / data platform engineering, not pure ML inference.",low
+e16a0bb3322f,builtin,https://builtin.com/job/data-engineer/8315152,2026-05-11,2026-05-10,Contentful,250-500-conditional,series-c,saas,Data Engineer,data_engineer,mid,us,"Strong SQL skills and experience working with cloud data warehouses (e.g., Snowflake, Redshift, BigQuery).
+
+Experience building and maintaining ETL/ELT pipelines using tools such as dbt, Airflow, or similar frameworks.
+
+Experience with CI/CD workflows, version control (Git), and Infrastructure-as-Code tools (Terraform a plus).
+
+Experience with monitoring/observability tools (e.g., Monte Carlo, Datadog).
+
+Experience with BI tools such as Tableau or Looker.","[{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""warehouse"",""instance"":""redshift""},{""category"":""warehouse"",""instance"":""bigquery""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""iac"",""instance"":""terraform""},{""category"":""observability_dq"",""instance"":""monte_carlo""},{""category"":""bi"",""instance"":""tableau""},{""category"":""bi"",""instance"":""looker""}]","Contentful has 700+ employees globally, which exceeds the 250 threshold. However, the posting describes a 'small, cross-geography engineering team' with a product mindset, suggesting a small data team (likely 1–5 people). Applying 250-500-conditional band. Terraform listed as 'a plus' — aspirational. Monte Carlo listed as preferred/aspirational. Datadog mentioned but not in taxonomy — noted for review. Company is a digital experience platform / headless CMS SaaS. Salary range $119k–$161k for Colorado suggests mid-to-senior level; 3–6+ years experience maps to mid/senior — classified as mid given lower bound of range.",medium
+11d5c9f1c30a,builtin,https://builtin.com/job/data-engineer/8668563,2026-05-11,2026-05-10,Enlace Health,unknown,unknown,healthtech-software,Data Engineer,data_engineer,mid,us,"Design and operate ingestion and normalization pipelines across the Bronze and Silver layers of a multi-tenant healthcare lakehouse.
+
+Develop secure batch and streaming ingestion processes supporting schema drift, replay, and PHI-compliant storage.
+
+Build scalable Spark-based transformation pipelines and reusable ingestion frameworks aligned to data mesh principles.
+
+Optimize storage, partitioning, and schema evolution strategies using open table formats.
+
+Deploy and manage platform infrastructure, CI/CD workflows, and observability using Infrastructure as Code and cloud-native tooling.
+
+Utilize cloud-native monitoring tooling; CloudWatch familiarity is a plus.
+
+Experience working in AWS-native or equivalent cloud data ecosystems.
+
+Familiarity with open table formats (e.g., Apache Iceberg); required depth at Senior level.
+
+Experience with Infrastructure as Code (Terraform, AWS CDK).
+
+Experience implementing CI/CD pipelines (GitHub Actions, AWS CodePipeline).
+
+Familiarity with orchestration frameworks such as AWS Step Functions.
+
+Familiarity with cloud monitoring/observability patterns; CloudWatch preferred.","[{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""open_table_format"",""instance"":""iceberg""},{""category"":""orchestration"",""instance"":""step_functions""},{""category"":""iac"",""instance"":""terraform""},{""category"":""iac"",""instance"":""cdk""},{""category"":""cicd"",""instance"":""github_actions""}]","Company size not stated in posting; marked unknown. Industry is healthtech-software (SaaS platform connecting payers/providers, not a healthcare provider operation). Iceberg listed as aspirational/preferred ('familiarity... required depth at Senior level'). AWS CDK mentioned alongside Terraform under IaC. AWS CodePipeline mentioned under CI/CD but not in taxonomy — omitted. CloudWatch mentioned as observability tool but not in taxonomy — omitted. Spark mentioned prominently but not in taxonomy — omitted. Medallion architecture (Bronze/Silver/Gold) referenced. Role appears mid-level based on 3/6/12 month ramp framing and 'independently own' language at 6 months rather than from day one.",low
+b504bf0cfc3b,builtin,https://builtin.com/job/data-engineer-knowledge-graphs/8083840,2026-05-11,2026-05-08,Mithrl,unknown,series-a,healthtech-software,"Data Engineer, Knowledge Graphs",data_engineer,senior,us,"Build and maintain ETL pipelines for large public biological datasets and curated knowledge sources
+
+Design, implement, and evolve schemas and storage models for graph structured biological data
+
+Create efficient APIs and query surfaces that allow internal teams and AI systems to retrieve nodes, relationships, pathways, annotations, and graph analytics
+
+Implement scalable storage and indexing strategies for high volume graph data
+
+Support data warehousing, documentation, and API reliability
+
+Experience with cloud infrastructure and modern data stack tools
+
+Nice to Have
+
+Experience with graph databases or graph query languages
+
+Experience with data warehousing and analytical storage formats","[{""category"":""ingestion_elt"",""instance"":""custom_python""}]","Company size not stated; 12X YoY revenue growth and tight-knit team description suggests early-stage startup, likely <100 employees but unconfirmed — marked unknown. 'Modern data stack tools' mentioned but no specific tools named — no components imputed. Graph databases mentioned as nice-to-have but no specific product named (e.g., Neo4j not in taxonomy). Python proficiency required, mapped to custom_python for ingestion/ETL. Role is clearly hands-on data engineering with ETL pipeline and schema design responsibilities. In-person SF office role.",low
+9ee56a768dfe,builtin,https://builtin.com/job/data-engineer/8647322,2026-05-11,2026-05-07,ROLLER,250-500-conditional,series-b,saas,Data Engineer,data_engineer,senior,canada,"Cloud Ecosystem: Develop and manage end-to-end data pipelines using Google Cloud Platform services, specifically leveraging Cloud Run, Cloud Function for compute, BigQuery for storage, and Cloud Composer (Airflow) for orchestration.
+
+Transformation Excellence: Build, maintain, and document complex data transformation layers using DBT (Data Build Tool) to ensure high data quality and reliability.
+
+Infrastructure as Code: Automate the provisioning of cloud resources using Terraform and streamline deployment workflows via GitHub Actions CI/CD pipelines.
+
+Cloud Data Warehousing: Demonstrate expert-level proficiency in managing and optimizing Cloud Data Warehouses , such as Snowflake & BigQuery .
+
+Stack Management: Architect and maintain a modern data stack by implementing best-in-class tools including Snowflake , Bigquery , dbt , Fivetran , Looker , Tableau and Airflow .
+
+Data Visualization: Create and maintain intuitive, high-performance Looker dashboards will be an added advantage.
+
+Familiarity with data ingestion tools like Fivetran , Airbyte, Workato, Mulesoft to sync data from various SaaS platforms into the warehouse.","[{""category"":""cloud_platform"",""instance"":""gcp""},{""category"":""warehouse"",""instance"":""bigquery""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""ingestion_elt"",""instance"":""fivetran""},{""category"":""ingestion_elt"",""instance"":""airbyte_oss""},{""category"":""bi"",""instance"":""looker""},{""category"":""bi"",""instance"":""tableau""},{""category"":""iac"",""instance"":""terraform""},{""category"":""cicd"",""instance"":""github_actions""},{""category"":""model_serving"",""instance"":""cloud_run""}]","Company has 300+ employees; posting describes a foundational/core data engineering role suggesting a small data team, qualifying for 250-500-conditional band. Cloud Composer is GCP-managed Airflow. Airbyte mentioned without specifying OSS vs cloud — defaulted to airbyte_oss. Workato and Mulesoft mentioned as ingestion tools but not in taxonomy — noted here. 'Familiarity with AI/ML pipelines' is aspirational/preferred, not a core requirement.",medium
+c9ce11db2532,builtin,https://builtin.com/job/senior-data-engineer/7103504,2026-05-11,2026-05-01,Way,50-100,series-a,marketplace,Senior Data Engineer,data_engineer,senior,us,"Design and implement a comprehensive data lake architecture using modern cloud-native technologies
+
+Build scalable ETL/ELT pipelines for real-time and batch data processing across all data sources
+
+Establish data ingestion frameworks to collect data from application APIs, third-party services, and databases
+
+Architect automated data quality monitoring, validation, and alerting systems
+
+Create robust data warehousing solutions optimized for analytics and business intelligence
+
+Implement DataOps practices with automated testing and deployment pipelines (CI/CD for data)
+
+Develop and maintain Python-based data processing frameworks and utilities
+
+Build an automated data pipeline orchestration using Apache Airflow or similar tools
+
+Create streaming data processing solutions using Apache Kafka, Kinesis, or Pub/Sub
+
+Implement infrastructure as code for all data platform components (Terraform, CloudFormation)
+
+Required Technical Skills
+
+Python proficiency required - demonstrated experience building data pipelines, ETL frameworks, and automation scripts
+
+SQL expertise - advanced knowledge of complex queries, performance optimization, and data modeling
+
+Strong experience with cloud platforms (AWS, GCP, or Azure) and their data services
+
+Proficiency with data lake technologies (Delta Lake, Apache Iceberg, or Apache Hudi)
+
+Experience with data orchestration tools (Apache Airflow, Prefect, Dagster, or similar)
+
+Knowledge of streaming data technologies (Apache Kafka, Kinesis, Pub/Sub)
+
+Familiarity with data warehouse technologies (Snowflake, BigQuery, Redshift, Databricks)","[{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""cloud_platform"",""instance"":""gcp""},{""category"":""cloud_platform"",""instance"":""azure""},{""category"":""open_table_format"",""instance"":""delta""},{""category"":""open_table_format"",""instance"":""iceberg""},{""category"":""open_table_format"",""instance"":""hudi""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""orchestration"",""instance"":""prefect""},{""category"":""orchestration"",""instance"":""dagster""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""streaming"",""instance"":""kinesis""},{""category"":""streaming"",""instance"":""pubsub""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""warehouse"",""instance"":""bigquery""},{""category"":""warehouse"",""instance"":""redshift""},{""category"":""warehouse"",""instance"":""databricks""},{""category"":""iac"",""instance"":""terraform""},{""category"":""iac"",""instance"":""cloudformation""},{""category"":""transformation"",""instance"":""custom_python""}]","Early data team hire — posting explicitly states 'early member of our data team' and 'building from scratch', implying a very small (likely 1-person) data team. Company founded 2020, Series A $20M in late 2022. B2B experiential platform for hospitality brands — classified as marketplace given it connects brands/hotels with experience consumers. AWS/GCP/Azure listed as alternatives, not all confirmed in use. Delta Lake mentioned alongside Iceberg and Hudi as alternatives. Docker and Kubernetes mentioned but not in taxonomy — noted here. Git mentioned but not in taxonomy.",medium
+ebdb42322dd7,builtin,https://builtin.com/job/senior-data-platform-engineer/8030279,2026-05-11,2026-04-25,Inspiren,unknown,unknown,healthtech-software,Senior Data Platform Engineer,data_platform_engineer,senior,remote_us_hq,"From our realtime monitoring platform to deeper longitudinal insights, data is at the heart of everything Inspiren does. We are seeking a highly skilled Senior Data Platform Engineer to own, maintain, and develop our data infrastructure built on Databricks and AWS to scale and accelerate our data capabilities across the company.
+
+Define, drive, and implement the future live ingestion layer of data into our data platform (e.g. Kafka, Kinesis). 
+
+Define and evolve standards for storage, compute, data management, provenance, and orchestration. 
+
+Cloud Providers: Demonstrated hands-on experience with Databricks. AWS experience is a plus but not required. 
+
+Data Warehousing: Expertise in modern data warehouse and lakehouse architectures.","[{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""warehouse"",""instance"":""databricks""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""streaming"",""instance"":""kinesis""}]","Company size not stated; healthtech-software (senior living analytics/monitoring platform). AWS listed as 'a plus but not required' — aspirational. Kafka and Kinesis listed as examples for future ingestion layer design. AI coding tools (Cursor, Claude Code) mentioned as requirements but not in taxonomy.",low
+4119ceec35f4,builtin,https://builtin.com/job/software-engineer-iii-data-platform/7797601,2026-05-11,2026-04-29,GlossGenius,100-250,series-b,saas,"Software Engineer, Data Platform",data_platform_engineer,senior,us,"You'll drive the design of core data models and pipelines in our Snowflake and Clickhouse lakehouse, setting the standards for quality, reliability, and scalability across the platform.
+
+Architect and evolve a scalable, cost-efficient, and reliable lakehouse foundation using Snowflake, Clickhouse, and orchestration tools
+
+Deep expertise in modern lakehouse technologies such as Snowflake and Clickhouse
+
+Experience implementing modern data orchestration patterns for big data use-cases, including batch and streaming workloads
+
+Advanced proficiency in SQL and Python or Scala, including performance optimization and large-scale ETL design","[{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""warehouse"",""instance"":""clickhouse""}]","Company describes itself as fintech + SMB software + consumer; classified as saas given primary product is a SaaS business management platform. 100,000+ small business customers. Salary range $200k–$236k suggests senior/staff level. Orchestration tools mentioned generically but no specific tool named. Scala aspirational (listed as alternative to Python). Medallion architecture pattern mentioned. Role feeds ML/AI platform pipelines.",medium
+9d5857445b17,builtin,https://builtin.com/job/senior-software-engineer-data-platform/9024385,2026-05-11,2026-05-09,Pearly,50-100,series-b,fintech-software,Senior Software Engineer - Data Platform,data_platform_engineer,senior,us,"Strict TypeScript, Cloud PostgreSQL, Serverless Functions, Terraform, React, GraphQL, Docker, and GitHub Actions. Strong test coverage across unit, integration, and E2E.
+
+Each engineer finds their own groove with the latest AI tools, including Claude Code, Cursor, MCP, and Bugbot. We stay close to the leading edge, stay realistic about what LLMs can and can't do, and keep shipping. Humans drive the specs, author collaboratively with AI, and review every layer before code hits production.
+
+Own Pearly's data systems end-to-end: Postgres warehouse and OLTP infrastructure, ETL pipelines (bulk and real-time streaming), and data products and APIs.
+
+Familiarity with a major cloud provider (GCP, AWS, or Azure).","[{""category"":""warehouse"",""instance"":""postgres_as_warehouse""},{""category"":""cloud_platform"",""instance"":""multicloud""},{""category"":""iac"",""instance"":""terraform""},{""category"":""cicd"",""instance"":""github_actions""}]","Company describes itself as B2B SaaS and payments for dental offices — classified as fintech-software given the payments/fintech emphasis. Company size inferred as ~50-100 (2,500 dental offices on platform, scaling rapidly, small team culture implied by 'meeting-light', 'high-talent' language and single data platform owner). Role is explicitly a hands-on data platform engineer owning warehouse, ETL pipelines, and data architecture in TypeScript/SQL rather than specialized data tools. Postgres used as both OLTP and warehouse. Streaming ETL mentioned but no specific streaming tool named. Docker mentioned but not in taxonomy — noted here. Claude Code, Cursor, MCP, Bugbot mentioned as AI dev tools — not in taxonomy. GraphQL mentioned — not in taxonomy. Role requires 8+ years but title is Senior; classified as senior. Cloud provider listed as GCP/AWS/Azure aspirational (familiarity required) — tagged multicloud.",medium
+3c508e1c8b6b,builtin,https://builtin.com/job/senior-software-engineer-data-platform/8793668,2026-05-11,2026-05-08,Plenful,50-100,series-b,healthtech-software,"Senior Software Engineer, Data Platform",data_platform_engineer,senior,us,"The stack is AWS, Postgres, and Python. It needs to be fast, correct, and built to evolve.
+
+Own the design and evolution of the core data model — domain entities, actions, and the audit trail that governs every automated decision
+
+Build the data layer that AI agents read from and write to: expressive enough that models can reason over operational context, governed enough for healthcare compliance
+
+Define how domain knowledge is structured, versioned, and queried — laying the groundwork for increasingly rich context, serving as the platform matures
+
+Deep expertise in relational databases: schema design, query performance, data modeling tradeoffs","[{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""warehouse"",""instance"":""postgres_as_warehouse""}]","Role is primarily backend data platform / data infrastructure engineering (schema design, data modeling, data contracts, serving context to AI agents) rather than a traditional analytics or ETL data engineering role. Postgres used as the operational data store and likely as the primary data layer. Python is the primary language. Company is Series B healthtech-software (AI agentic platform for healthcare operations — not a healthcare provider). Company size estimated ~50-100 based on Series B stage and 'growing team' language. No BI, orchestration, or transformation tooling mentioned. 'Practical understanding of applied AI systems' listed as nice-to-have — aspirational.",medium
+b39cf9182c56,builtin,https://builtin.com/job/senior-software-engineer-data-platform/8292855,2026-05-11,2026-05-05,Highnote,100-250,series-b,fintech-regulated,Senior Software Engineer - Data Platform,data_platform_engineer,senior,us,"8+ years experience building high volume and low latency data platform and data pipelines using distributed event technology, e.g. Pubsub, Kafka, Kinesis, etc., and data storage system, e.g. Spanner/Postgres, BigQuery, Cassandra, data lakes, etc.
+
+Preferred experience with BigQuery and Snowflake.
+
+Experience with cloud platforms such as GCP or AWS
+
+Docker and Kubernetes
+
+Able to model and design modern data structured in data lakes and data warehouses","[{""category"":""streaming"",""instance"":""pubsub""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""streaming"",""instance"":""kinesis""},{""category"":""warehouse"",""instance"":""bigquery""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""cloud_platform"",""instance"":""gcp""},{""category"":""cloud_platform"",""instance"":""aws""}]","Highnote is a card issuer processor / embedded finance company — fintech-regulated is appropriate given payment card processing and program management. 140+ employees. $145M+ raised. Role is hands-on data platform engineering (Java/Python, pipelines, distributed systems). Snowflake listed as 'preferred experience' — aspirational. Cassandra, Spanner/Postgres, Docker, Kubernetes mentioned but not in taxonomy. Claude Code mentioned as AI-powered dev tool.",medium
+734190490024,builtin,https://builtin.com/job/senior-staff-software-engineer-data-platform/8761159,2026-05-11,2026-05-06,AirOps,50-100,series-b,saas,"Senior / Staff Software Engineer, Data Platform",data_platform_engineer,staff,us,"Strong Python and SQL with hands-on experience in ClickHouse, Redshift, or similar OLAP systems at product scale
+
+Familiarity with the AWS-native stack: Glue, S3, Redshift
+
+Experience integrating LLMs into data pipelines for enrichment, classification, or tagging","[{""category"":""warehouse"",""instance"":""clickhouse""},{""category"":""warehouse"",""instance"":""redshift""},{""category"":""cloud_platform"",""instance"":""aws""}]","Glue and S3 mentioned as aspirational/nice-to-have AWS-native stack. LLM integration into pipelines also aspirational. This is described as the foundational/first Data Platform hire. Company backed by Greylock, Unusual Ventures, Wing VC — likely Series B stage. ClickHouse and Redshift listed as alternatives ('or similar'), so both noted. Glue not in taxonomy (omitted). S3 not in taxonomy (omitted).",medium
+f589765c0323,builtin,https://builtin.com/job/senior-staff-software-engineer-data-platform/9201333,2026-05-11,2026-04-29,Actively AI,50-100,series-b,saas,Senior/Staff Software Engineer (Data Platform),data_platform_engineer,staff,us,"Work across the full stack. Python, SQL, DBT, BigQuery, Snowflake and move between layers fluidly, contributing wherever the work needs it.
+
+Fluent across the modern data stack. Proficient in Python, SQL, and DBT, with hands-on experience in BigQuery or Snowflake, and familiar with orchestration tools like Fivetran, Airflow, or Polytomic.
+
+Fluent in real-time infrastructure. You've built streaming and mini-batch pipelines using Pub/Sub, Kafka, Dataflow, or similar technologies, and understand the trade-offs between latency, throughput, and operational complexity.
+
+Familiarity with embedding and vector pipelines like chunking strategies, index management, and keeping representations in sync with fast-changing source data.","[{""category"":""warehouse"",""instance"":""bigquery""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""ingestion_elt"",""instance"":""fivetran""},{""category"":""reverse_etl"",""instance"":""polytomic""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""streaming"",""instance"":""pubsub""}]",Company raised $68M total; described as early-stage with ~team from Brex/Scale AI/Google — likely Series B given $68M raise from TCV/Bain/First Round. Role is explicitly 'Data Platform Engineer' in parenthetical. Polytomic mentioned as orchestration-adjacent tool but mapped to reverse_etl per taxonomy. Google Dataflow mentioned but not in taxonomy — noted here. Airflow listed as aspirational ('familiar with'). Polytomic listed as aspirational ('familiar with'). BigQuery vs Snowflake framed as 'or' — both included. Vector pipeline familiarity noted as nice-to-have (aspirational); no specific vector DB named so no vector_db component added. Company size estimated at 50-100 based on early-stage signals and $68M raise with no headcount stated.,medium
+f7eb7f689c37,builtin,https://builtin.com/job/senior-staff-software-engineer-data-platform/9201316,2026-05-11,2026-04-29,Actively AI,50-100,series-b,saas,Senior/Staff Software Engineer (Data Platform),data_platform_engineer,staff,us,"Work across the full stack. Python, SQL, DBT, BigQuery, Snowflake and move between layers fluidly, contributing wherever the work needs it.
+
+Fluent across the modern data stack. Proficient in Python, SQL, and DBT, with hands-on experience in BigQuery or Snowflake, and familiar with orchestration tools like Fivetran, Airflow, or Polytomic.
+
+Fluent in real-time infrastructure. You've built streaming and mini-batch pipelines using Pub/Sub, Kafka, Dataflow, or similar technologies, and understand the trade-offs between latency, throughput, and operational complexity.
+
+Familiarity with embedding and vector pipelines like chunking strategies, index management, and keeping representations in sync with fast-changing source data.","[{""category"":""warehouse"",""instance"":""bigquery""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""ingestion_elt"",""instance"":""fivetran""},{""category"":""reverse_etl"",""instance"":""polytomic""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""streaming"",""instance"":""pubsub""}]","Company raised $68M total; described as early-stage with ~co-founder team from Stanford/Brex/Scale AI — likely Series B given $68M raise from TCV, Bain Capital Ventures, First Round. Size estimated 50-100 (early-stage, NYC office, no headcount stated). Polytomic mentioned as orchestration/ingestion tool — classified as reverse_etl per taxonomy. Google Dataflow mentioned but not in taxonomy — noted here. 'Embedding and vector pipelines' mentioned as nice-to-have but no specific vector DB named. Airflow, Fivetran, Polytomic flagged as aspirational ('familiar with', 'or'). BigQuery vs Snowflake presented as alternatives ('BigQuery or Snowflake'). dbt_core used as best match for 'DBT' mention.",medium
+411b8ac4494c,builtin,https://builtin.com/job/staff-data-infrastructure-engineer/9183568,2026-05-11,2026-04-28,Pattern,250-500-conditional,series-c,ecommerce-platform,Staff Data Platform Engineer,data_platform_engineer,staff,us,"Data Processing: Strong experience with distributed data processing and OLAP technologies such as Spark, Trino, and ClickHouse; Snowflake or Databricks experience is a plus.
+
+System Observability: Expertise in building highly observable platforms using tools like Prometheus, Grafana, or Datadog to ensure deep visibility and proactive reliability of global systems.
+
+Strong Nice-to-Haves: Expertise in Databricks/Snowflake, experience with GoLang or Scala, and a history of contributing to open-source data projects.","[{""category"":""warehouse"",""instance"":""clickhouse""},{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""warehouse"",""instance"":""databricks""}]","Spark and Trino mentioned but not in taxonomy — added to notes for v0.2 review. Prometheus and Grafana mentioned for observability but not in taxonomy. Datadog mentioned but not in taxonomy. Snowflake and Databricks flagged as aspirational ('is a plus' / 'Nice-to-Haves'). Company size is likely >500 given Deloitte fastest-growing recognition and hundreds of global brand partners, but posting describes a small data platform team reporting to VP of Data and Architecture — marked 250-500-conditional. Role is hands-on platform engineering, not pure design oversight.",medium
+bcea5c73cbc9,builtin,https://builtin.com/job/software-engineer-data-platform/7276456,2026-05-11,2026-04-25,RWA.xyz,50-100,series-a,fintech-software,Software Engineer (Data Platform),data_platform_engineer,mid,us,"3+ years of experience engineering data systems with technologies like Spark, Beam, or Flink
+
+Strong experience in relational database schema design
+
+Experience with cloud infrastructure DevOps",[],"Spark, Beam, Flink mentioned as experience requirements but none are in the closed taxonomy — omitted from stack_components_normalized. Company focuses on tokenized real-world assets (blockchain/crypto data platform) serving institutional finance clients; classified as fintech-software rather than industry_excluded traditional finance. Company appears early-stage startup (CTO doing first interviews, paid trial process, equity 0.5-1%), likely <100 employees. No specific cloud platform, warehouse, or other stack tools named explicitly.",low
+5f30406a65cf,builtin,https://builtin.com/job/software-engineer-iii-senior-data-platform/8657467,2026-05-11,2026-04-25,ngrok,100-250,series-b,devtools,"Software Engineer III/Senior, Data Platform",data_platform_engineer,senior,remote_us_hq,"We manage about 500TiB of data, run a dagster instance with over 1,600 assets, maintain 550+ dbt models, and own Flink streaming pipelines that process ~22,000 messages per second on average.
+
+Own the platform as it scales : You'll improve performance, cost efficiency, and architectural design across our data stack (Airbyte, Dagster, dbt, Athena, Flink, Superset, and beyond). As traffic and customers grow, the data platform keeps up.
+
+Tech Stack
+ngrok runs entirely on AWS. Engineers develop by using remote development tools and/or ssh to connect to remote EC2 environments that run a full Kubernetes cluster of the ngrok stack, closely mirroring production.
+
+We self host a large part of our data stack on Kubernetes, namely dagster, Superset, Airbyte, and Flink. Our core data warehouse is in Athena, with the data being stored as Apache Iceberg. We also run some workloads on our Clickhouse Cloud infrastructure.
+
+Our data codebase is a mix of Python and Scala 3. We use dbt for SQL modeling. All data tools are fully integrated with the rest of our developer platform.
+
+The ngrok codebase is primarily Go and TypeScript. We use Postgres for persistence, Kafka for streaming, Protobuf for service boundaries, and Kubernetes, Terraform, Helm, and Buildkite to operate and ship reliably. React is used for user interfaces, and GitHub supports our development workflows and remembers everything.","[{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""warehouse"",""instance"":""athena""},{""category"":""warehouse"",""instance"":""clickhouse""},{""category"":""open_table_format"",""instance"":""iceberg""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""orchestration"",""instance"":""dagster""},{""category"":""ingestion_elt"",""instance"":""airbyte_oss""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""bi"",""instance"":""preset_superset""},{""category"":""iac"",""instance"":""terraform""},{""category"":""cicd"",""instance"":""github_actions""}]","Flink streaming pipelines not in taxonomy (added to notes). Buildkite CI/CD not in taxonomy. Helm not in taxonomy. Self-hosted Airbyte on Kubernetes — classified as airbyte_oss. GitHub Actions inferred from 'GitHub supports our development workflows'; could be github_actions or just GitHub SCM — marked medium confidence on that component. Company described as trusted by 9M+ developers with significant scale; size band estimated at 100-250 based on startup profile and Series B signals, though not explicitly stated. The posting also contains a truncated/appended section about an 'Admin Team' role which appears to be a copy-paste artifact and is not the role being evaluated.",medium
+4c1aa52d7d0f,builtin,https://builtin.com/job/lead-data-platform-engineer/8441611,2026-05-11,2026-04-27,Exactera,100-250,series-b,fintech-software,Principal Data Platform Engineer,data_platform_engineer,staff,us,"As Principal Data Platform Engineer, you'll architect and implement our centralized data platform on Databricks. You'll establish governance patterns using Unity Catalog, optimize for cost and performance at scale, and enable our existing Data Engineers to build confidently on the platform. This is a data infrastructure role—focused on pipelines, storage, governance, and platform operations.
+
+Delta Lake Optimization: Establish patterns for Z-ordering, compaction, and liquid clustering at multi-TB scale. Define table structures, partitioning strategies, and retention policies that balance query performance with storage costs
+
+ETL Pipeline Framework: Build declarative pipeline patterns using Delta Live Tables. Create orchestration workflows for ingesting data from internal sources such as SQL databases and S3
+
+Third Party Integrations: Integrate with third party data sources such as ERP systems (Netsuite etc.) and external data providers (S&P etc.) with automated ingest, robust error handling and monitoring.
+
+Unity Catalog: Production experience with multi-catalog governance, metastore design, and lineage tracking.
+
+Delta Live Tables: Strong hands-on experience building declarative ETL pipelines, including change data capture and expectations/constraints
+
+Databricks Workflows: Experience with job orchestration, scheduling, and operational monitoring
+
+Business Intelligence: Experience enabling company-wide analytics and reporting with modern business intelligence tools and maintaining source of truth data and metrics.
+
+PySpark & Databricks SQL: Strong proficiency for code review, performance tuning, and query optimization
+
+AWS experience (S3, IAM, VPC) with ability to collaborate on infrastructure decisions
+
+Infrastructure-as-code experience (Terraform preferred)
+
+Background building platforms that serve AI/ML workloads (experience preparing data for downstream ML consumption, RAG and retrieval, and LLMs.","[{""category"":""warehouse"",""instance"":""databricks""},{""category"":""open_table_format"",""instance"":""delta""},{""category"":""catalog_governance"",""instance"":""unity_catalog""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""iac"",""instance"":""terraform""},{""category"":""cdc"",""instance"":""debezium""},{""category"":""rag_framework"",""instance"":""none_explicit""}]","Company described as FinTech SaaS with $100M+ funding; size estimated 100-250 based on 'start-up' framing and funding stage. 'Principal' title maps to staff seniority. Databricks Workflows used for orchestration (mapped to airflow category as closest orchestration instance — note: Databricks Workflows is not in taxonomy, added to notes for v0.2 review). Delta Live Tables used for CDC pipelines. RAG/LLM/knowledge graphs mentioned as aspirational/preferred. Terraform listed as 'preferred' — aspirational. Modern BI tools mentioned generically with no specific tool named — not mapped. Migration from legacy systems to Databricks is the primary project.",medium
+2f68a864b8f7,builtin,https://builtin.com/job/software-engineer-data-platform/9154056,2026-05-11,2026-04-24,RWA.xyz,50-100,series-a,fintech-software,Software Engineer (Data Platform),data_platform_engineer,mid,us,"3+ years of experience engineering data systems with technologies like Spark, Beam, or Flink
+
+Strong experience in relational database schema design
+
+Experience with cloud infrastructure DevOps",[],"Spark, Beam, Flink mentioned as experience requirements but none are in the taxonomy. Company is a blockchain/tokenized-assets data platform — classified as fintech-software rather than industry_excluded because the core product is a data/analytics SaaS for financial institutions, not a trading or asset-management system. Company size inferred as early-stage startup (CTO doing first interviews, paid trial run, equity 0.5-1%) — likely <100 employees. Stack mentions are aspirational/requirements only; no internal stack named explicitly. Spark, Beam, Flink noted for taxonomy review.",low
+374fb0ed0fbd,builtin,https://builtin.com/job/software-engineer-data-platform/8645112,2026-05-11,2026-04-25,Middesk,100-250,series-b,fintech-software,"Software Engineer, Data Platform",data_platform_engineer,senior,us,"Strong data modeling instincts and deep familiarity with SQL, pipeline orchestration (Airflow, Dagster, etc.), and data transformation patterns
+
+Experience with distributed data processing frameworks (Spark, Flink, Beam, or similar) and an understanding of when and how to apply parallelization to scale pipelines beyond single-node limits
+
+Experience building and designing collections stored on Elasticsearch
+
+Experience operating event-driven data pipelines using serverless compute (e.g., AWS Lambda, Google Cloud Functions, Azure Functions) and managed cloud services
+
+Experience with Terraform, Datadog, or Kubernetes","[{""category"":""orchestration"",""instance"":""airflow""},{""category"":""orchestration"",""instance"":""dagster""},{""category"":""vector_db"",""instance"":""elasticsearch""},{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""cloud_platform"",""instance"":""gcp""},{""category"":""cloud_platform"",""instance"":""azure""},{""category"":""iac"",""instance"":""terraform""}]","Airflow and Dagster listed as examples (aspirational/preferred). Elasticsearch aspirational (nice to have). AWS Lambda, Google Cloud Functions, Azure Functions mentioned as nice-to-have examples — implies multicloud but listed individually; mapped to respective cloud platforms. Terraform aspirational (nice to have). Spark, Flink, Beam mentioned but not in taxonomy — omitted from normalized components. Datadog and Kubernetes mentioned but not in taxonomy. Company is YC-backed, Sequoia/Accel funded — likely Series B based on Forbes Fintech 50 recognition and scale described. Core product is business identity verification / entity resolution, fitting fintech-software.",medium
+55cd337f5f4c,builtin,https://builtin.com/job/senior-software-engineer-data-platform/9108092,2026-05-11,2026-04-21,Lithic,100-250,series-c,fintech-regulated,"Senior Software Engineer, Data Platform",data_platform_engineer,senior,remote_us_hq,"Design, build, and maintain backend services and REST APIs that serve data from various SQL subsystems and other data sources
+
+Develop well-tested, production-grade Python services with clean API contracts, proper authentication, versioning, and error handling
+
+Maintain and improve existing data pipelines that move data from source systems into Snowflake (Airflow, Airbyte)
+
+Contribute to the dbt project alongside the Analytics Engineering team — model improvements, test coverage, and data quality
+
+Experience with data pipeline development using tools like Airflow, Airbyte, Dagster, or similar
+
+Familiarity with dbt or similar transformation frameworks
+
+Familiarity with AWS services (Lambda, S3, RDS, API Gateway, ECS/Fargate)
+
+Kafka or event streaming experience
+
+Infrastructure-as-code experience (Terraform, Pulumi)","[{""category"":""warehouse"",""instance"":""snowflake""},{""category"":""orchestration"",""instance"":""airflow""},{""category"":""ingestion_elt"",""instance"":""airbyte_oss""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""orchestration"",""instance"":""dagster""},{""category"":""cloud_platform"",""instance"":""aws""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""iac"",""instance"":""terraform""},{""category"":""iac"",""instance"":""pulumi""}]","Role is ~80% backend software engineering (Python REST APIs serving data from Snowflake) and ~20% data engineering (pipelines, dbt, Airflow). Classified as data_platform_engineer given the data platform focus and pipeline responsibilities. Dagster aspirational (listed as preferred/similar). Airbyte instance ambiguous (oss vs cloud); defaulted to airbyte_oss. FastAPI/Flask/Django mentioned as web frameworks but not in taxonomy. AWS Lambda, S3, RDS, API Gateway, ECS/Fargate mentioned as preferred. Fintech-regulated classification due to card issuing/payments processing with direct network connections. Company is 160+ employees.",medium
+2ced0bc03357,builtin,https://builtin.com/job/staff-software-engineer-data-platform/8831107,2026-05-11,2026-04-16,Ladder,100-250,series-c,fintech-regulated,"Staff Software Engineer, Data Platform",data_platform_engineer,staff,remote_us_hq,"We are looking for a powerhouse Staff Software Engineer with battle-tested experience building ETL pipelines at massive scale. You will take ownership of our toughest backend and data plumbing challenges, bridging our transactional systems (Datomic) with our analytical and streaming infrastructure (BigQuery, Kafka, Flink, DBT) to architect resilient, elegant, and high-volume data pipelines. If you dream in immutable data structures and love using functional programming to untangle architectural knots, we need you.
+
+Architect and Build: Design, deploy, and scale robust data pipelines that reliably move and transform data between Datomic, Kafka, and BigQuery.
+
+Tame the Chaos: Build elegant, fault-tolerant ETL systems leveraging frameworks like DBT to ingest, sanitize, and normalize messy, unstructured data from dozens of third-party APIs and legacy vendors.
+
+Master the Stream: Evolve our event-driven architecture, optimizing streaming performance (Kafka/BEAM) to support real-time machine learning models
+
+A medallion architect: You have 4+ battle-tested years designing high-volume ETL/ELT pipelines at massive scale. You are an expert at structuring data lakes through Raw/Bronze, Cleansed/Silver, and Curated/Gold layers, and you rely on advanced dbt modeling to ensure pristine data quality.
+
+A modern data stack master: You have extensive, hands-on experience operating cloud data warehouses (specifically BigQuery), streaming infrastructure (Kafka), and processing frameworks (Apache Beam, Flink, or Spark). Wrangling messy, unstructured third-party API data into clean, ready-to-query models is second nature to you.
+
+Backend: Clojure, JVM
+
+Data: Datomic, BigQuery, BEAM, Sigma, SQL
+
+Infrastructure: Kafka, Docker, Kubernetes, Packer, Terraform, GCP, GraphQL","[{""category"":""cloud_platform"",""instance"":""gcp""},{""category"":""warehouse"",""instance"":""bigquery""},{""category"":""transformation"",""instance"":""dbt_core""},{""category"":""streaming"",""instance"":""kafka""},{""category"":""bi"",""instance"":""sigma""},{""category"":""iac"",""instance"":""terraform""}]","Life insurance insurtech — classified as fintech-regulated given real-time underwriting and insurance product. Company has $74B+ in coverage provided; size estimated 100-250 based on stage signals (Series C-equivalent, Palo Alto HQ, 22-state hiring footprint). Datomic (transactional DB) not in taxonomy — omitted. Apache Beam/Flink mentioned as streaming processing frameworks — not directly in taxonomy streaming instances; Kafka captured. Apache Flink aspirational or co-used alongside Kafka. Kubernetes, Docker, Packer not in taxonomy — omitted. Role is hands-on Staff-level data platform engineering with pipeline architecture ownership.",medium
 8a70c15f6040,hn_whoishiring,https://news.ycombinator.com/item?id=47610840,2026-05-11,2026-04-02,Thirdfort,50-100,series-a,fintech-regulated,Analytics Engineer (Fixed Term Contract),analytics_engineer,mid,uk,"We've spent the last year rebuilding our product from the ground up and are increasingly leaning into AI across the team/system, focusing on technologies that let product-minded engineers solve hard client problems fast and with confidence: Go, Temporal, NextJS and React Native.","[{""category"":""orchestration"",""instance"":""temporal""}]","Thirdfort is a compliance/fraud-prevention SaaS for regulated professionals (legal, property). Industry classified as fintech-regulated rather than industry_excluded because the product is a software platform, not a compliance-dominated internal ops role. Stack details for the Analytics Engineer role specifically are not provided in the posting — only general engineering stack is mentioned (Go, Temporal, NextJS, React Native). Temporal noted as orchestration. Seniority inferred as mid given no 'senior' qualifier and the role covers parental leave (fixed-term contract). Company size estimated ~50-100 based on Series A stage signal.",low
 1b4f340ec5ce,hn_whoishiring,https://news.ycombinator.com/item?id=47604056,2026-05-11,2026-04-01,Caribou,50-100,unknown,healthtech-software,Senior Analytics Engineer,analytics_engineer,senior,canada,,[],"Company is ~50 people, at the floor of inclusion range. Job description body not provided — only a URL and brief company overview. Stack, responsibilities, and requirements are unknown. Industry inferred as healthtech-software: Caribou is a SaaS platform serving homecare agencies (not a provider). Confidence is low due to missing JD content.",low
 be9811fcaae9,hn_whoishiring,https://news.ycombinator.com/item?id=48052750,2026-05-11,2026-05-07,Hive (hive.co),50-100,series-a,saas,"Senior Software Engineer, Data",data_platform_engineer,senior,remote_us_hq,"Senior Software Engineer, Data (7+ yrs) Design and own a cloud-native big data platform handling audience data for millions of attendees and billions of interactions a year. This is one of our newest pods- you'll be part of the founding team.",[],"YC S14 batch company. Role is founding data pod member. No specific stack tools named in the posting. Other roles listed (Backend, Frontend, EM) are not in scope. Company size inferred from YC S14 vintage and 'founding team' language for data pod — likely 50-100 range. Remote within Canada + USA.",low
