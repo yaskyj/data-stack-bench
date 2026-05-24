@@ -1,6 +1,8 @@
 # Stack #1 — AWS lake-first OSS
 
-**Status:** Scoped. Implementation has not started. Orchestrator decision (ADR-001) is the immediate blocker.
+**Status:** Scoped. Implementation has not started. Unblocked: orchestrator call locked 2026-05-12 (Airflow); ADR-001 drafted at Proposed status ([`../../adrs/ADR-001-orchestrator-strategy.md`](../../adrs/ADR-001-orchestrator-strategy.md)) — sharpens with operator notes and flips to Accepted during implementation; synthetic dataset spec v0.1 drafted 2026-05-13 ([`../../canonical/synthetic-dataset.md`](../../canonical/synthetic-dataset.md)); assessment tool v0.1 drafted 2026-05-15 ([`../../canonical/assessment-tool.md`](../../canonical/assessment-tool.md)); implementation plan drafted 2026-05-17 ([`plan.md`](plan.md)).
+
+**Where to start.** Read [`plan.md`](plan.md) — vertical-slice order, canonical tasks closed per slice, ADRs queued alongside each slice, exit criteria. The plan is the IDE-context bridge for opening this stack in Cursor.
 
 ## Shape
 
@@ -14,7 +16,7 @@ The pragmatic anchor stack — first to ship because it's the cheapest to keep r
 | Transactional source | Postgres (RDS) | Locked |
 | Lake-side query | Athena | Locked |
 | Transformation | dbt-core | Locked |
-| Orchestration | Airflow / Dagster / Prefect | Pending ADR-001 |
+| Orchestration | Airflow (self-hosted on Fargate) | Locked 2026-05-12; ADR-001 drafted at Proposed, sharpens during implementation |
 | Ingestion | Airbyte or Meltano + custom Python | Pending |
 | Catalog / lineage | OpenMetadata (self-hosted) | Locked |
 | Observability | dbt tests + Elementary or re_data | Pending |
@@ -27,7 +29,7 @@ $50–150/mo at full operation, with disciplined spin-down between measurement w
 
 ## What this stack tests against the canonical task set
 
-All nine functional categories. See [`../../canonical/task-set.md`](../../canonical/task-set.md) for the task definitions.
+All nine functional categories. See [`../../canonical/task-set.md`](../../canonical/task-set.md) for the task definitions and [`../../canonical/synthetic-dataset.md`](../../canonical/synthetic-dataset.md) for the dataset shapes, reference scales (S/M/L), and validation query suite this stack must answer to within tolerance.
 
 ## Per-stack ADRs
 

@@ -22,9 +22,10 @@ ADRs are append-only. If a decision changes, write a new ADR that supersedes the
 
 Sharp, opinionated, calls specific tradeoffs by name. The project identity is a fair comparative tester, but individual ADRs are where the comparative work is shown — they earn the comparative credibility by being honest about what was hard.
 
-ADR drafting cannot be assistant-shipped. The draft can come from anywhere; the final must be read against the actual implementation, with the tradeoff judgment in the maintainer's voice.
+Each ADR must be grounded in the actual implementation. The hard constraints are: the implementation is real before the ADR is finalized, the tradeoff named is the actual tradeoff the implementation surfaced (not a generic one), and the final voice and decision-judgment are the maintainer's. AI-assisted drafting is fair game — the project is build-in-public; the value of the artifact lives in operator-grade judgment, not in keystrokes.
 
 ## Index
 
-- ADR-IAC-001 (forthcoming) — Terraform across all stacks. (Decision locked 2026-05-10; ADR text to be written.)
-- ADR-001 (forthcoming) — Stack #1 orchestrator pick. Pending the first job-posting analysis run.
+- ADR-003 (forthcoming) — Synthetic data generator: determinism model + library choices. Proposed decisions are drafted in `canonical/synthetic-dataset-build-plan.md`; the ADR is written against the real implementation when the generator is built in Stack #1.
+- ADR-002 (forthcoming) — Terraform across all stacks. (Decision locked 2026-05-10; ADR text to be written.)
+- [ADR-001-orchestrator-strategy.md](ADR-001-orchestrator-strategy.md) — Status: Proposed (2026-05-12). Orchestrator strategy: Airflow at Stack #1 + Stack #2 (self-hosted on Fargate); Dagster at Stack #3; Databricks Workflows at Stack #4; Fabric Data Factory at Stack #5. Resolves the orchestrator family question as per-stack-with-intent rather than lock-one-across-the-lineup. Flips to Accepted after Stack #1's orchestration slice validates the call.
