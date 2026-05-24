@@ -1,12 +1,12 @@
 # Job-posting analysis pipeline
 
-Programmatic capture pipeline for the quarterly job-posting analysis. Specification lives at [`../methodology.md`](../methodology.md) v0.1.2; this directory is the implementation.
+Programmatic capture pipeline for the quarterly job-posting analysis. Specification lives at [`../methodology.md`](../methodology.md) v0.1.3; this directory is the implementation.
 
 ## What this pipeline does
 
 For each quarterly run:
 
-1. **Fetch** raw postings from three sources (HN "Who is hiring", BuiltIn, Wellfound) into JSONL files under `../captures/YYYY-qN/raw/`.
+1. **Fetch** raw postings from the active sources (HN "Who is hiring" and BuiltIn at v0.1.3; Wellfound deferred — see methodology v0.1.3 for the rationale) into JSONL files under `../captures/YYYY-qN/raw/`.
 2. **Filter** postings against the methodology's inclusion criteria (company stage/size, role, seniority, geography, industry, freshness). Excluded postings are kept on disk with `included: false` and an `exclude_reason` — auditability requires not deleting them.
 3. **Extract** normalized fields from each included posting via an LLM. Verbatim source paragraphs are preserved in `stack_mentions_raw`; the pipeline is forbidden from being lossy on the source text.
 4. **Load** rows into `../captures/YYYY-qN/postings.csv` idempotently on `posting_id`.
@@ -22,7 +22,7 @@ pipeline/
   __init__.py
   fetch_hn.py                 HN Algolia API → raw/hn-<thread-id>.jsonl
   fetch_builtin.py            BuiltIn HTTP + BS4 → raw/builtin-<page>.jsonl
-  fetch_wellfound.py          Wellfound HTTP + BS4 (CIC fallback) → raw/wellfound-<page>.jsonl
+  # fetch_wellfound.py        deferred to methodology v0.2 — DataDome bot mitigation blocks the public path
   filter_postings.py          raw JSONLs + inclusion filters → filtered/<source>.jsonl
   llm_client.py               LiteLLM wrapper, provider via LLM_PROVIDER
   extract_fields.py           filtered JSONLs + llm_client → extracted/<source>.jsonl
@@ -60,7 +60,7 @@ cp .env.example .env  # then fill in LLM_PROVIDER + provider creds
 # Per source. CAPTURE_DIR resolves to canonical/job-postings/captures/2026-q2/raw.
 CAPTURE_DIR=../captures/2026-q2 python fetch_hn.py
 CAPTURE_DIR=../captures/2026-q2 python fetch_builtin.py
-CAPTURE_DIR=../captures/2026-q2 python fetch_wellfound.py
+# fetch_wellfound.py deferred to methodology v0.2 — Wellfound blocked by DataDome at v0.1.3
 
 # Cross-source.
 CAPTURE_DIR=../captures/2026-q2 python filter_postings.py
@@ -97,6 +97,6 @@ Three rules the pipeline must honor (the methodology is explicit on all three):
 
 Per-quarter run, with ~600 raw postings filtered to 150 extracted:
 
-- Fetch passes: ~free (HN API, BuiltIn HTML, Wellfound HTML).
+- Fetch passes: ~free (HN API, BuiltIn HTML; Wellfound deferred at v0.1.3).
 - Extract pass: ~150 rows × ~2k tokens in / ~600 tokens out per call. On Anthropic Sonnet pricing roughly $1–2 per full quarter run. Bedrock and OpenAI are in the same envelope.
 - Total: well under $5 per quarterly capture. Fits inside the project's under-$100/mo infrastructure target with rounding error.

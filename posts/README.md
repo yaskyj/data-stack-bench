@@ -35,4 +35,4 @@ related_stacks: [stack-01-athena]
 
 ## Index
 
-- (Empty — first post lands with the first job-posting analysis run.)
+- (Empty — the first published post lands once Stack #1 is substantially complete against the canonical task set. Draft material accretes in the meantime in the gitignored `drafts/` subdirectory.)

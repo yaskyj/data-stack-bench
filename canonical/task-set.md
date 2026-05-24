@@ -342,7 +342,7 @@ Each task × stack combination is content. Each ADR is a candidate blog post. Ea
 
 ## What this draft is *not yet*
 
-- It does not yet specify exact synthetic data shapes or volumes — that comes with the synthetic data generator design, including the document corpus shape for 1.6 / 9.6.
+- Synthetic data shapes, volumes, and the document corpus shape for 1.6 / 9.6 are specified in `synthetic-dataset.md` (v0.1 landed 2026-05-13). The generator implementation itself is Phase 1 work.
 - It does not yet have explicit pass/fail criteria per task — those will emerge from Stack #1 implementation, where running the tasks reveals which acceptance bars actually matter.
 - It does not yet include a worked example of a comparative writeup — the first one lands when Stack #1 finishes Category 1.
 - It does not yet incorporate findings from the job-posting analysis. The methodology is specified separately (`job-postings/methodology.md`, sibling to this doc); when the analysis runs, results may shift category emphasis, surface missing tasks, or trigger a buyer-profile split.

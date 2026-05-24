@@ -171,7 +171,7 @@ A posting that lists "Snowflake, dbt, Airflow, Looker" yields four normalized co
 - A component category absent from the posting is **not** an absence vote — postings are short and miss things. Co-occurrence and frequency analysis only count positive mentions.
 - If a posting says "ELT pipeline" without naming the tool, that's a vote for "uses some ELT tool, instance unknown" — capture in notes; do not impute.
 
-## Capture protocol (v0.1.2)
+## Capture protocol (v0.1.3 — unchanged in shape from v0.1.2; source mix rebalanced per the v0.1.3 changes block above)
 
 Capture is a Python pipeline in `canonical/job-postings/pipeline/`. Three fetchers plus a shared extractor and CSV writer.
 
@@ -181,7 +181,7 @@ Capture is a Python pipeline in `canonical/job-postings/pipeline/`. Three fetche
 - `fetch_builtin.py` — scrapes BuiltIn search-result pages plus per-posting detail pages via HTTP + BeautifulSoup. Search filters baked into the URL: company size 50–250, role types in the include list, geo US + remote. Plain HTML; no auth required. Output: same JSONL schema.
 - `fetch_wellfound.py` — *not yet implemented (deferred at v0.1.3).* Intended: Wellfound (formerly AngelList) public job listings via HTTP + BeautifulSoup where the listing is accessible without login; fall back to Claude in Chrome for sessions that require auth. **Probed 2026-05-11:** wellfound.com is gated by DataDome bot mitigation — every public URL returns 403 to non-JS clients. The Claude-in-Chrome fallback would be the path forward, but for the 2026-Q2 capture we accepted N=40 from HN+BuiltIn rather than invest the time. Revisit at v0.2.
 
-**Filter pass.** `filter_postings.py` reads the raw JSONLs and applies the v0.1.2 inclusion filters (company stage/size, role title/function, seniority, geography, industry, posting freshness). Each posting gets `included: bool` and `exclude_reason: str` recorded. Exclusions are kept in the file (not deleted) so the filter pass is auditable.
+**Filter pass.** `filter_postings.py` reads the raw JSONLs and applies the inclusion filters (company stage/size, role title/function, seniority, geography, industry, posting freshness — unchanged across v0.1.2/v0.1.3). Each posting gets `included: bool` and `exclude_reason: str` recorded. Exclusions are kept in the file (not deleted) so the filter pass is auditable.
 
 **Extraction pass.** `extract_fields.py` calls a provider-agnostic LLM client (`llm_client.py`, built on LiteLLM) per included posting. Provider is configured via `LLM_PROVIDER` env var; supported defaults include `anthropic` (direct API), `bedrock` (Anthropic models on AWS), `openai`, and `vertex` (Anthropic models on GCP). Any LiteLLM-supported provider works. The system prompt encodes the closed component taxonomy from the section above and instructs the model to return strict JSON conforming to the row schema. The raw posting paragraph is preserved verbatim in `stack_mentions_raw`. Low-confidence extractions (model returns `confidence: low` on any field) are tagged for the spot-check queue. This provider-agnostic design is deliberate: the project is cross-cloud, and the pipeline must be reproducible by anyone with credentials for any one of the supported providers — not just by holders of an Anthropic API key. The README documents per-provider setup including AWS Bedrock model-access gating.
 
@@ -225,8 +225,8 @@ Subsequent quarterly runs revisit the lineup: a component that appears in 5% of 
 
 ## What this methodology is *not yet*
 
-- Storage shape for the captured data: CSV in repo for v0.1.2. Revisit (SQLite, DuckDB file) if the analysis becomes complex or the row count grows past a few thousand.
-- Handling of postings that explicitly say "we're hiring you to choose the stack" — a real signal for the consulting wedge but a noise source for component-frequency counts. v0.1.2: exclude from frequency counts but route to a separate list (`captures/2026-q2/stack-choosing-companies.md`) for outreach purposes.
+- Storage shape for the captured data: CSV in repo for v0.1.3 (carried from v0.1.2). Revisit (SQLite, DuckDB file) if the analysis becomes complex or the row count grows past a few thousand.
+- Handling of postings that explicitly say "we're hiring you to choose the stack" — a real signal for the consulting wedge but a noise source for component-frequency counts. v0.1.3 (carried from v0.1.2): exclude from frequency counts but route to a separate list (`captures/2026-q2/stack-choosing-companies.md`) for outreach purposes.
 - Wellfound integration: probed 2026-05-11, found DataDome bot mitigation blocks all public URLs. Path forward is Claude in Chrome with a logged-in session, deferred to v0.2 (see Sources section). Decision criteria for revisiting: if Q3 BuiltIn-heavy capture lands below N=120, invest the time on Wellfound automation; if N=120+, accept the two-source mix and leave Wellfound on the bench.
 
 ## Versioning

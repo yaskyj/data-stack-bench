@@ -16,12 +16,16 @@ captures/
     cooccurrence-top-10.csv            top 10 (warehouse, transformation, orchestrator) triples + others
     stage-breakout.csv                 frequency tables re-run on Series A/B vs. mid-market subsets
     spot-check.md                      human-reviewed sample log (≥15% of rows)
+    lineup-decision.md                 internal decision doc — locks Stack #2-5 against this capture
     raw/                               JSONL dumps from the fetchers (one file per source)
   2026-q3/                             second capture (from qoq-delta.csv onward)
     ...
 ```
 
-The narrative interpretation for each run (Stack #N recommendation, lineup confirmation, what was surprising) does **not** live here — it lives in [`../../../posts/`](../../../posts/) as a dated public writeup.
+Two narrative artifacts come out of each run:
+
+- A short **internal lineup decision doc** (`lineup-decision.md` inside the quarterly directory) that locks the call against the data — which stacks the lineup confirms, which it rearranges, what the surprising signals were. This is project-internal and lives next to the capture data.
+- A **public writeup** of the same run in [`../../../posts/`](../../../posts/) as a dated post. The public writeup is timed against the project's overall publication threshold, not the run itself — see the build-first sequencing note in the internal brief.
 
 ## File format conventions
 
@@ -37,4 +41,4 @@ Each quarterly directory should contain enough information that a stranger can r
 
 ## Cadence
 
-Quarterly. First capture: **2026-Q2**, in progress. Scheduled to complete before ADR-001 (orchestrator) is written so the cross-cloud lineup is grounded in evidence rather than priors.
+Quarterly. First capture: **2026-Q2**, complete (N=40, HN + BuiltIn — Wellfound deferred to v0.2). Internal lineup decision doc landed 2026-05-11. Spot-check sign-off pending. Public writeup follows per the build-first sequencing in the internal brief.

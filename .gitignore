@@ -4,6 +4,11 @@
 CLAUDE.md
 
 positioning_one_pager.md
+
+# Draft posts — stems and works-in-progress that accrete material as builds happen.
+# Promoted to posts/ when ready to publish. See posts/drafts/README.md for the lifecycle.
+posts/drafts/
+
 # AI assistant config / state directories (defensive — ignored even if not present).
 .claude/
 .cursor/
