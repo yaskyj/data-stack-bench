@@ -1,0 +1,9 @@
+# Cursor indexing-ignore — kept OUT of the bulk codebase index / embeddings
+# (so these files aren't proactively uploaded to Cursor's indexing service),
+# but STILL readable by the agent on demand and via @-reference.
+#
+# CLAUDE.md is the deliberate case: the .cursor/rules file points the agent at it,
+# so it gets read when actually needed — without being swept into background embeddings.
+
+CLAUDE.md
+posts/drafts/

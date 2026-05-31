@@ -1,0 +1,40 @@
+# Cursor ignore — files the agent must NOT index, read, or reference at all.
+# (.cursorignore = full block. For "readable on demand but not bulk-indexed",
+#  see .cursorindexingignore — that's where CLAUDE.md lives.)
+
+# --- Sensitive internal docs not needed for implementation ---
+positioning_one_pager.md
+
+# --- Secrets / credentials (defense-in-depth; also gitignored) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+.aws/
+.gcp/
+.azure/
+service-account*.json
+*-credentials.json
+
+# --- Build artifacts / noise the agent shouldn't waste context on ---
+.git/
+__pycache__/
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.terraform/
+*.tfstate
+*.tfstate.*
+target/
+dbt_packages/
+node_modules/
+data/raw/
+data/local/
+*.duckdb

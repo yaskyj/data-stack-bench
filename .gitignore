@@ -92,6 +92,10 @@ service-account*.json
 # --- Data / output ---
 data/raw/
 data/local/
+# Synthetic data generator local output dir (per canonical/synthetic-dataset-build-plan.md).
+# Will also be re-ignored by the package-local .gitignore once canonical/synthetic-data/ exists,
+# but root-level coverage prevents an accidental `git add .` of S-scale (~500MB) / M (~50GB) / L (~2.5TB) output.
+out/
 *.duckdb
 *.duckdb.wal
 *.sqlite
