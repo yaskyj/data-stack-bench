@@ -2,8 +2,11 @@
 # (so these files aren't proactively uploaded to Cursor's indexing service),
 # but STILL readable by the agent on demand and via @-reference.
 #
-# CLAUDE.md is the deliberate case: the .cursor/rules file points the agent at it,
-# so it gets read when actually needed — without being swept into background embeddings.
+# CLAUDE.md (project conventions & state) and BRIEF.md (strategic frame) are
+# the deliberate cases: the .cursor/rules file points the agent at both, so
+# they're read when actually needed — without being swept into background
+# embeddings.
 
 CLAUDE.md
+BRIEF.md
 posts/drafts/

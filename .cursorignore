@@ -1,6 +1,6 @@
 # Cursor ignore — files the agent must NOT index, read, or reference at all.
 # (.cursorignore = full block. For "readable on demand but not bulk-indexed",
-#  see .cursorindexingignore — that's where CLAUDE.md lives.)
+#  see .cursorindexingignore — that's where CLAUDE.md and BRIEF.md live.)
 
 # --- Sensitive internal docs not needed for implementation ---
 positioning_one_pager.md

@@ -1,7 +1,11 @@
 # --- Internal / not for the public repo ---
-# Project brief (strategic context, monetization plans, internal sequencing).
-# Read by AI agents working on this repo via the local file path; not for public consumption.
+# Project conventions & state (CLAUDE.md) and strategic brief (BRIEF.md).
+# Both are read by AI agents working on this repo via the local file path;
+# not for public consumption. CLAUDE.md may eventually go public once it's
+# stable as project-conventions-only; BRIEF.md stays local indefinitely
+# (career, monetization, distribution-strategy context).
 CLAUDE.md
+BRIEF.md
 
 positioning_one_pager.md
 

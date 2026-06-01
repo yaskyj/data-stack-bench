@@ -288,12 +288,13 @@ canonical/synthetic-data/
 
 When opening this repo in Cursor (or another AI IDE) for Stack #1 implementation, the load-bearing context files are:
 
-1. `CLAUDE.md` — strategic frame, working-style rules, project state. Read first.
-2. `canonical/task-set.md` — what to build.
-3. `canonical/synthetic-dataset.md` — what data to build against.
-4. `canonical/assessment-tool.md` — why the choices.
-5. `adrs/ADR-001-orchestrator-strategy.md` — Airflow at Fargate, rationale and hypotheses.
-6. `stacks/stack-01-athena/README.md` — Stack #1 component lockfile.
-7. **This file** — slice order and exit criteria.
+1. `CLAUDE.md` — project conventions, working-style rules, technical scope, phase plan, decision log. Read first.
+2. `BRIEF.md` — strategic frame (why the project exists, monetization paths, distribution strategy). Gitignored, local-only.
+3. `canonical/task-set.md` — what to build.
+4. `canonical/synthetic-dataset.md` — what data to build against.
+5. `canonical/assessment-tool.md` — why the choices.
+6. `adrs/ADR-001-orchestrator-strategy.md` — Airflow at Fargate, rationale and hypotheses.
+7. `stacks/stack-01-athena/README.md` — Stack #1 component lockfile.
+8. **This file** — slice order and exit criteria.
 
 ADRs that get drafted alongside slices live in `adrs/` (cross-cutting: 002, 003) or `stacks/stack-01-athena/adrs/` (stack-specific: 004 onward).

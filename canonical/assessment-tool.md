@@ -24,7 +24,7 @@ The output of working through this document is **a per-branch viable shortlist**
 - Not a market-share survey. The test bench's stack lineup is anchored to the 2026-Q2 job-postings analysis (`canonical/job-postings/`) for the anchor buyer profile, not to vendor revenue rankings.
 - Not a substitute for measurement. Where this document makes a cost or operational claim that *can* be measured by the test bench, the claim is tagged as such, and the lock state is "TBD — pending Stack #N" until that stack ships.
 - Not stable. v0.1 ships before any test bench stack has measured numbers attached; refresh sequence is documented at the bottom.
-- Not an opinionated picker. The project's locked public POV is **fair comparative tester**, not opinionated builder (CLAUDE.md, 2026-05-08). Terminals are viable shortlists; arguments live in the writeups for each shortlisted component, not in a thumb-on-the-scale verdict.
+- Not an opinionated picker. The project's locked public POV is **fair comparative tester**, not opinionated builder (BRIEF.md → Strategic frame; locked 2026-05-08). Terminals are viable shortlists; arguments live in the writeups for each shortlisted component, not in a thumb-on-the-scale verdict.
 
 ## Who this is calibrated to
 
